@@ -18,8 +18,8 @@ My startup will be a book-reviewing website, named "badreads" as a play on the p
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
 - [ ] Description of key features
 - [ ] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
@@ -30,9 +30,9 @@ Have you ever read a phenomenal book and just had to tell someone about it? Have
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](/images/startup_design_sketches.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The design will consist of 4 main pages: the login page, the home page, the review page, and the account page. The login page will have fields for a username and password, and login/register options. The home page will have a quote of the day and the list of books that are available for review. The review page will open when a book is selected for review, and will have the ratings, comments, and book information. The account page will have account details, including a username, password, and your past comments.
 
 ```mermaid
 sequenceDiagram
