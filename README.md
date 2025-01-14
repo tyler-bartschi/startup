@@ -50,9 +50,13 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Allows comments and reviews on different books
+- Updates in real time the list of comments on the books
+- Updates in real time the average score for the books
+- Randomly generates a quote each time the website is loaded
+- Saves and displays your past comments
+- Has a short description and information on the books
+- Supports account updates
 
 ### Technologies
 
