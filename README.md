@@ -37,8 +37,15 @@ The design will consist of 4 main pages: the login page, the home page, the revi
 ```mermaid
 sequenceDiagram
     actor You
+    actor Other User
     actor Website
-    You->>Website: Replace this with your design
+    You->>Website: Login
+    You->>Website: Comment
+    Website->>Other User: Your comment
+    You->>Website: Account Updates
+    Other User->>Website: Comment
+    Website->>You: Other User's Comment
+
 ```
 
 ### Key features
