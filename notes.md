@@ -19,9 +19,13 @@ Command for ssh: `ssh -i [key pair file] ubuntu@98.80.112.233`
 
 ### Creating the Route53 DNS Name
 
-[My server root domain](zacksayshi.click): `zacksayshi.click`
+[My server root domain](https://zacksayshi.click): `zacksayshi.click`
 
 To create a Route53 DNS name, I had to first lease the domain name, and then create the hosted zone. Once the hosted zone was created with my root domain name, I could "create records" which provided the information regarding what IP address is mapped to what name. I created both the root domain name and any subdomains of the root domain (denoted by *) to route to the same IP address, the one associated with my server instance.
+
+### Updating the Caddy File to use HTTPS
+
+To create the web certificate, we used the service Let's Encrypt to get a valid web certificate for free. To do this, I remote shelled into my server and changed the Caddyfile using vi, replaced :80 (which stands for port 80) with the root domain, and two other locations with the root domain. As near as I can tell, these give the rules for what to do when someone requests something from those domains. Somehow, Caddy talked to Let's Encrypt and generated a valid web certifacte, and now HTTPS can be used for web communciation.
 
 ## HTML Notes
 
