@@ -29,4 +29,6 @@ To create the web certificate, we used the service Let's Encrypt to get a valid 
 
 ## HTML Notes
 
-HTML is entirely concerned with the structure and content of a website, not so much the styling (CSS) or interactivity (React and JavaScript). Some useful tags are body, header, main, footer, a, p, div, span, img, and probably others. Div is used for divisions in the webpage. All tags can be given attributes in the opening tag, such as id=""  or class="". These are used in conjunction with CSS and JavaScript, I think. 
+HTML is entirely concerned with the structure and content of a website, not so much the styling (CSS) or interactivity (React and JavaScript). Some useful tags are body, header, main, footer, a, p, div, span, img, and probably others. Div is used for divisions in the webpage. All tags can be given attributes in the opening tag, such as id=""  or class="". These are used in conjunction with CSS and JavaScript, I think. [This is the link to the 260 GitHub for HTML structure](https://github.com/webprogramming260/.github/blob/main/profile/html/structure/structure.md).
+
+Input is a useful feature of HTML as well, allowing it to get input from the user. Several types of input and attributes to modify the input are available. [This is the link to the 260 GitHub for HTML input](https://github.com/webprogramming260/.github/blob/main/profile/html/input/input.md). Labels are used to label the input (duh) and then the input tag along with attributes such as type, id, name, and value are used to set up the actual input field itself.
