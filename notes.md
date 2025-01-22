@@ -29,4 +29,4 @@ To create the web certificate, we used the service Let's Encrypt to get a valid 
 
 ## HTML Notes
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+HTML is entirely concerned with the structure and content of a website, not so much the styling (CSS) or interactivity (React and JavaScript). Some useful tags are body, header, main, footer, a, p, div, span, img, and probably others. Div is used for divisions in the webpage. All tags can be given attributes in the opening tag, such as id=""  or class="". These are used in conjunction with CSS and JavaScript, I think.
