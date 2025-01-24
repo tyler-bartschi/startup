@@ -5,11 +5,13 @@
     <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simon</title>
+    <!-- This puts the simon icon in the broswer tab, next to the Simon name -->
     <link rel="icon" href="favicon.ico" />
   </head>
   <body>
     <!-- Use header, main, and footer elements to give semantic structure -->
     <header>
+      <!-- sup means superscript -->
       <h1>Simon<sup>&reg;</sup></h1>
 
       <!-- Navigation elements -->
@@ -28,6 +30,8 @@
     </header>
 
     <main>
+      <!-- div means division, which is used for content structure -->
+      <!-- span is an inline divison, which puts the text inline put can be used in CSS or JavaScript -->
       <div class="players">
         Player:
         <span class="player-name">Mystery player</span>
@@ -56,9 +60,11 @@
 
       <div>
         <table>
+          <!-- puts all the buttons in the table, two buttons per row -->
           <tr>
             <td>
               <button>
+                <!-- This somehow builds the images for the buttons. Experiment with this -->
                 <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
                   <!-- SVG
                     M move <to x,y>
