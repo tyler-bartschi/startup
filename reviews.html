@@ -39,6 +39,25 @@
                 </table>
             </div>
             <h2>Reviews</h2>
+            <div>
+                <form>
+                    <label for="comment">Your Review:</label>
+                    <textarea id="user-comment" name="varUserReview" placeholder="Enter Your Review Here"></textarea>
+                    <fieldset>
+                        <legend>Overall Score</legend>
+                        <input type="radio" id="five-stars" name="varScore" value="5" checked />
+                        <label for="five-stars">5</label>
+                        <input type="radio" id="four-stars" name="varScore" value="4"/>
+                        <label for="four-stars">4</label>
+                        <input type="radio" id="three-stars" name="varScore" value="3"/>
+                        <label for="three-stars">3</label>
+                        <input type="radio" id="two-stars" name="varScore" value="2"/>
+                        <label for="two-stars">2</label>
+                        <input type="radio" id="one-star" name="varScore" value="1"/>
+                        <label for="one-star">1</label>
+                    </fieldset>
+                </form>
+            </div>
             <!-- This will use database data to render past comments -->
             <!-- it might also use WebSocket so new comments are rendered in real time -->
             <div id="Review">
