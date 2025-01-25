@@ -81,15 +81,15 @@ To the TA grading my deliverable, could you please check my [notes.md](/notes.md
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I created four html pages: [index.html](index.html), [home.html](home.html), [reviews.html](reviews.html), and [account.html](account.html). The index.html page includes the login fields for the user, the home.html displays the home page of the application, the reviews.html will be the page where you can leave a review on The Way of Kings, and account.html which will display account data like associated email and old comments.
+- [x] **Proper HTML element usage** - I spent time figuring out what different HTML elements did, and made extensive use of header, footer, main, body, div, hr, span, form, input, and button, among others.
+- [x] **Links** - I included links to the four main pages on every page of the startup, and linked some of the buttons to other pages. Pressing the "login" or "create" buttons will take you to the home page, and clicking the "review" button will take you to the reviews page.
+- [x] **Text** - I included a large amount of text in my startup. There are textual indications of the titles and authors of the books on the home and review page, and the review page has additional textal elements including a summary of the book, page count, and placeholders for other's comments.
+- [x] **3rd party API placeholder** - My 3rd party API will be a random quote generator that is displayed on the home page. For the time being, my home page displays a quote from my friend as a placeholder.
+- [x] **Images** - I included images in the form of a favicon of a book, as well as images of the book covers for the two books that are currently on there.
+- [x] **Login placeholder** - I used a form with email and password inputs as the login placeholder. It also includes login and create buttons that will take you to the home page.
+- [x] **DB data placeholder** - The database data in my startup will take the place of the list of previous comments (now placeholders) on the review page, as well as being used to display your username and past comments on the account page.
+- [x] **WebSocket placeholder** - The WebSocket placeholder is the average rating displayed on both the review and the home page, as well as the number of total ratings displayed on the review page. Eventually, these will update in real time.
 
 ## 🚀 CSS deliverable
 
