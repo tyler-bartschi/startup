@@ -37,3 +37,32 @@ Input is a useful feature of HTML as well, allowing it to get input from the use
 - Div is a structural element that no visible effect, but allows for division of content. Div should be used to divide content where it makes sense, and likely can be used in conjuction with CSS to style.
 - thead used in a table is used outside of the first tr, and denotes the row as a table header row? This is used in conjunction with th to denote the elements.
 - Can use an id attribute in a opening tag to give it a id. I believe this is used primarily for CSS and React.
+- ID's should be unique within an HTML document
+
+## CSS Notes
+
+CSS stands for Cascading Style Sheets.  
+CSS defines `rulesets` or `rules`, which basically have a selector (which elements it applies to) and declarations that represent how to style the element. This consists of properties and property values.  
+You can use the `style` attribute of an HTML element and assign declarations that way. Or, you can use the HTML `style` element, which should appear in the head, and assign the rules there. Lastly, you can use the `link` element to create a hyperlink to an external file containing CSS, and this must also appear in the head. Using the `link` element is preferred.  
+
+- Elements inherit the rules applied to their parents (like the body tag can be a parent of p)
+- Lower level rules override higher declaration. If the color is different between the body tag and the p tag, the p tag declaration wins.
+- CSS defines things in boxes, from inner to outer is: content (the actual text or image of an element), padding (background color), border(properties such as color, thickness, and line styel), and margin (external to the actual styling of the box, whitespace)
+- Change `box-sizing` property from default (`content-box`) to `border-box` to redefine width and heigh to include padding and border. Easier to style elements when visual size matches actual size.
+- Wildcard name selector is `*`
+- You can use a `descendant combinator` that is a space separated list of values, each value is a descendant of the previous item, and the rules will only apply to those specific descendents. For instance, `section h2` will only apply to rules to h2 elements in section elements.
+- Other types of combinators include descendant, child, general sibling, and adjacent sibling.
+
+| Combinator | Meaning | Example | Description |
+-------------|---------|---------|-------------|
+| Descendant   | A list of descendants | `body section` | Any section that is a descendant of a body|
+| Child | A list of direct children | `section > p` | Any p that is a direct child of a section|
+| General sibling | A list of siblings | `div ~ p` | Any p that has a div sibling |
+| Adjacent sibling | A list of adjacent sibilngs | `div + p` | Any p that has an adjacent div sibling |
+
+- If there is a class applied to an element, we can apply rules to all elements that have that class with the `.class` syntax
+- You can combine element name and class selectors to select both the element and class, such as `p.summary`
+- To seelect a specific ID, use `#IDname`
+- Attribute selectors allow you to select elements based on attributes, such as `a[href]`, and you can also have a required value: `a[href="something.png"]`. Also support wildcards, such as `p[href*="https://"]`
+- Also supports pseudo selectors, which select based on position, mouse interaction, hyperlink visitation, and attributes. One such is `section:hover`
+- note to self-read up to declarations
