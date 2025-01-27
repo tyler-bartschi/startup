@@ -65,4 +65,13 @@ You can use the `style` attribute of an HTML element and assign declarations tha
 - To seelect a specific ID, use `#IDname`
 - Attribute selectors allow you to select elements based on attributes, such as `a[href]`, and you can also have a required value: `a[href="something.png"]`. Also support wildcards, such as `p[href*="https://"]`
 - Also supports pseudo selectors, which select based on position, mouse interaction, hyperlink visitation, and attributes. One such is `section:hover`
-- note to self-read up to declarations
+- Four major familes of fonts: `Serif`, `sans-serif`, `fixed`, and `symbol`.
+  - Serif fonts have extra strokes, sans-serif do not. Fixed fonts are all the same size, symbol fonts represent non-language characters.
+- `@font-face` rule allows you to specify a font and a source location, ensuring always having the same font
+- An import statement can automatically generate the CSS for importing the font, and the syntax is `@import url(url);`
+- Lots of free fonts on the Google Font service
+- `p:nth-child(i)` appears to specify which element to reference when applying CSS rules, and i indicates which one in order, starting at 1.
+- `animation-name` property has a value that is the name of the animation, with rules for the animation defined later. `animation-duration` indicates how long the animation should take, for example 3s for 3 seconds
+- keyframes provide the key points of the animation, CSS generates the transition.
+  - Use the `from` keyword to indicate the start, and the `to` keyword to indicate the end. Can also use percentages to define what it should look like that percentage of the way through.
+- 
