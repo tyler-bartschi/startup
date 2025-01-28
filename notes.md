@@ -80,4 +80,7 @@ You can use the `style` attribute of an HTML element and assign declarations tha
 - The `@media (orientation: portrait)` (the code in the parentheses is an example of the predicates that it takes) can dynamically detect the size and orientation of the device and apply rules that accomodate the change
   - You can also make things disappear or move to a different location
   - Grids are used to put things in a responsive grid orientation
-  - 
+- For a flexbox:
+  - `align items` aligns the items vertically
+  - `justify-content` aligns the items horizontally
+- Frameworks provide functions and components that commonly appear in web applications.
