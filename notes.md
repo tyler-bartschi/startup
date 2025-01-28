@@ -74,4 +74,10 @@ You can use the `style` attribute of an HTML element and assign declarations tha
 - `animation-name` property has a value that is the name of the animation, with rules for the animation defined later. `animation-duration` indicates how long the animation should take, for example 3s for 3 seconds
 - keyframes provide the key points of the animation, CSS generates the transition.
   - Use the `from` keyword to indicate the start, and the `to` keyword to indicate the end. Can also use percentages to define what it should look like that percentage of the way through.
-- 
+- The CSS `display` property allows you to change how it is displayed in browser.
+- The `meta` tag in the `head` element with `name="viewport" content="width=device-width,inital-scale=1"` tells the browser not to scale the page automatically
+- The `float` property moves an element to the left or right of its container element, and allows inline elements to wrap around it
+- The `@media (orientation: portrait)` (the code in the parentheses is an example of the predicates that it takes) can dynamically detect the size and orientation of the device and apply rules that accomodate the change
+  - You can also make things disappear or move to a different location
+  - Grids are used to put things in a responsive grid orientation
+  - 
