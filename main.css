@@ -15,17 +15,17 @@ body {
 header {
     flex: 0 15px;
     align-items: center;
-    display: flex;
-    flex-direction: row;
-    border-bottom: thin black solid;
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* border-bottom: thin black solid; */
     /* padding: 2em; */
-    background-color: rgb(185, 8, 8);
+    /* background-color: rgb(185, 8, 8); */
 }
 
 .page-title {
     color: rgb(0, 0, 0);
     text-decoration: none;
-
+    padding-top: 1em;
     /* justify-content: left; */
     /* align-items: center; */
 }
