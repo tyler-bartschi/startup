@@ -12,14 +12,20 @@ body {
     /* justify-content: space-around; */
 }
 
+
+d-flex align-items-center justify-content-around justify-content-md-between border-bottom
 header {
     flex: 0 15px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    /* display: flex; */
-    /* flex-direction: row; */
-    /* border-bottom: thin black solid; */
-    /* padding: 2em; */
-    /* background-color: rgb(185, 8, 8); */
+}
+
+.nav-item {
+    border: thin black solid;
+    border-radius: .25em;
+    margin: .25em;
+    /* background: black; */
 }
 
 .page-title {
@@ -30,11 +36,6 @@ header {
     /* align-items: center; */
 }
 
-.menu-links{
-    align-items: center;
-    justify-content: left;
-}
-
 main {
     flex: 1;
 }
@@ -42,4 +43,16 @@ main {
 footer {
     flex: 0 40px;
 
+}
+
+@media (max-height: 600px){
+    header {
+        display: none;
+    }
+    footer {
+        display: none;
+    }
+    main {
+        flex: 1 100vh;
+    }
 }
