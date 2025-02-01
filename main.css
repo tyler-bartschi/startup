@@ -13,16 +13,20 @@ body {
 }
 
 header {
-    flex: 1;
+    flex: 0 15px;
     align-items: center;
+    display: flex;
+    flex-direction: row;
+    border-bottom: thin black solid;
     /* padding: 2em; */
-    /* background-color: rgb(235, 224, 224); */
+    background-color: rgb(185, 8, 8);
 }
 
 .page-title {
-    color: rgb(155, 25, 25);
+    color: rgb(0, 0, 0);
     text-decoration: none;
-    justify-content: left;
+
+    /* justify-content: left; */
     /* align-items: center; */
 }
 
