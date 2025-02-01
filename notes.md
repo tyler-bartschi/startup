@@ -85,4 +85,3 @@ You can use the `style` attribute of an HTML element and assign declarations tha
   - `justify-content` aligns the items horizontally
 - Frameworks provide functions and components that commonly appear in web applications.
 - To include Bootstrap in the application, run `npm install bootstrap@5.3.3`, though this will be later during JavaScript.
-- 
