@@ -1,0 +1,36 @@
+.welcome {
+    padding-top: 1em;
+    padding-bottom: 2em;
+}
+
+.welcome-title {
+    font-weight: bold;
+    color: rgb(12, 49, 173);
+}
+
+.login-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn {
+    background-color: rgb(12, 49, 173) !important;
+    color: rgb(255, 253, 253) !important;
+}
+
+.btn-wrapper {
+    margin-bottom: 1em;
+}
+
+.create-btn {
+    background-color: rgb(116, 120, 134) !important;
+}
+
+.btn:hover {
+    background-color: rgb(6, 31, 110) !important;
+}
+
+.create-btn:hover {
+    background-color: rgb(72, 75, 83) !important;
+}
