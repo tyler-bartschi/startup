@@ -16,24 +16,34 @@ body {
 d-flex align-items-center justify-content-around justify-content-md-between border-bottom
 header {
     flex: 0 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+}
+
+.header-color {
+    background: rgb(190, 20, 20);
+}
+
+nav {
+    padding: 0.5em;
+    padding-bottom: 1em;
+    padding-left: 0em;
+}
+
+menu {
+    justify-content: right;
 }
 
 .nav-item {
     border: thin black solid;
     border-radius: .25em;
     margin: .25em;
-    /* background: black; */
+    background: rgb(233, 228, 228);
 }
 
 .page-title {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 253, 253);
     text-decoration: none;
+    position: absolute;
     padding-top: 1em;
-    /* justify-content: left; */
-    /* align-items: center; */
 }
 
 main {
