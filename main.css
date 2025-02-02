@@ -76,6 +76,18 @@ footer > div {
     text-decoration: none;
 }
 
+@media (max-width: 600px){
+    header {
+        display: none;
+    }
+    footer {
+        display: none;
+    }
+    main {
+        flex: 1 100vh;
+    }
+}
+
 @media (max-height: 600px){
     header {
         display: none;
