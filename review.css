@@ -1,0 +1,32 @@
+.book-wrapper {
+    /* flex: 0 200px; */
+    display: flex;
+    flex-direction: row;
+    columns: 3;
+    align-items: center;
+}
+
+.image {
+    flex: 0;
+}
+
+.book-data {
+    flex: .5;
+    white-space: nowrap;
+    margin-left: 3em;
+}
+
+.rating-data {
+    flex: .5;
+    margin-left: 0.5em;
+}
+
+@media (max-width: 600px) {
+    .image {
+        display: none;
+    }
+    .book-data {
+        margin-left: 0em;
+        margin-right: 0.5em;
+    }
+}
