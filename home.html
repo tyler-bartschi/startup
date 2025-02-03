@@ -6,6 +6,7 @@
         <title>badreads</title>
         <link rel="icon" href="images/badreads-favicon.avif"/>
         <link rel="stylesheet" href="main.css"/>
+        <link rel="stylesheet" href="home.css"/>
 
         <!-- Bootstrap link -->
         <link
@@ -30,36 +31,44 @@
                 </nav>
             </header>
         </div>
-        <main>
-            <div id="quote-of-the-day">
-                <h3>Quote of the Day</h3>
-                <p><span>Tell them hi for me. Please.</span></p>
-                <p><span>-Zachary Huckins</span></p>
+
+        <main class="container-fluid">
+            <div class="quote-wrapper">
+                <div class="quote-of-the-day">
+                    <h4>Quote of the Day</h4>
+                    <span class="quote">Tell them hi for me. Please.</span>
+                    <span class="quote-author">-Zachary Huckins</span>
+                </div>
             </div>
             <!-- eventually I want the images for each book to be on the side, and the information next to it -->
-            <div id="reviews">
-                <h3>Reviews</h3>
-                <hr>
-                <div id="book">
-                    <img id="cover-image" src="images/the-way-of-kings.jpg" alt="The Way of Kings cover" width="75px">
-                    <p id="book-title"><b>The Way of Kings</b></p>
-                    <p id="author">Author: <span>Brandon Sanderson</span></p>
-                    <!-- This is the placeholder for the WebSocket data. This will update in real time -->
-                    <p id="average-review">Average: <span>4.4/5</span></p>
-                    <form method="get" action="reviews.html">
-                        <button type="submit">+ Review</button>
-                    </form>
+            <h3>Reviews</h3>
+            <div class="book">
+                <div class="book-wrapper">
+                    <img class="cover-image" src="images/the-way-of-kings.jpg" alt="The Way of Kings cover" width="75px">
+                    <div class="book-data">
+                        <p id="book-title"><b>The Way of Kings</b></p>
+                        <p id="author">Author: <span>Brandon Sanderson</span></p>
+                        <!-- This is the placeholder for the WebSocket data. This will update in real time -->
+                        <p id="average-review">Average: <span>4.4/5</span></p>
+                    </div>
                 </div>
-                <hr>
-                <div id="book">
-                    <img id="cover-image" src="images/crime-and-punishment.jpg" alt="Crime and Punishment cover" width="75px">
-                    <p id="book-title"><b>Crime and Punishment</b></p>
-                    <p id="author">Author: <span>Fyodor Dostoevsky</span></p>
-                    <!-- also a placeholder for WebSocket data -->
-                    <p id="average-review">Average: <span>1.5/5</span></p>
-                    <!-- &#10003 is the HTML code for a checkmark -->
-                    <button type="submit" disabled>&#10003 Reviewed</button>
+                <form method="get" action="reviews.html">
+                    <button class="review-button" type="submit">+ Review</button>
+                </form>
+            </div>
+
+            <div class="book">
+                <div class="book-wrapper">
+                    <img class="cover-image" src="images/crime-and-punishment.jpg" alt="Crime and Punishment cover" width="75px">
+                    <div class="book-data">
+                        <p id="book-title"><b>Crime and Punishment</b></p>
+                        <p id="author">Author: <span>Fyodor Dostoevsky</span></p>
+                        <!-- also a placeholder for WebSocket data -->
+                        <p id="average-review">Average: <span>1.5/5</span></p>
+                    </div>
                 </div>
+                <!-- &#10003 is the HTML code for a checkmark -->
+                <button class="review-button" type="submit" disabled>&#10003 Reviewed</button>
             </div>
         </main>
         <footer>

@@ -1,0 +1,72 @@
+.quote-wrapper {
+    flex: 0 80px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.quote-of-the-day {
+    flex: 0 100px;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    border: thin black solid;
+    border-radius: .5em;
+    /* background-color: rgb(50, 102, 197); */
+    background-color: rgb(96, 96, 104);
+}
+
+h3 {
+    border-bottom: thin black solid;
+    padding-top: 1em;
+    font-weight: bold !important;
+}
+
+h4 {
+    color: rgb(255, 253, 253);
+    font-weight: bold !important;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-bottom: thin white solid;
+}
+
+.book {
+    margin: 1em;
+}
+
+.book-data {
+    border: thin solid black;
+    border-radius: .25em;
+    padding: .5em;
+
+}
+
+#book-title {
+    margin: 0;
+}
+
+#author {
+    margin: 0;
+}
+
+.book-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    columns: 2;
+    column-gap: 2em;
+}
+
+.quote {
+    padding-top: 0.5em;
+    color: rgb(255, 253, 253);
+    font-style: italic;
+}
+
+.quote-author {
+    padding-top: 0.5em;
+    color: rgb(255, 253, 253);
+    font-style: italic;
+}
