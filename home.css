@@ -62,6 +62,19 @@ h4 {
     column-gap: 2em;
 }
 
+.book-data-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.button-alignment {
+    flex: 0;
+    position: absolute;
+    bottom: 0;
+}
+
 .quote {
     padding-top: 0.5em;
     color: rgb(255, 253, 253);
@@ -88,8 +101,7 @@ h4 {
 
 .average-review {
     flex: 0 15px;
-    /* justify-self: bottom; */
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     margin-bottom: .5em;
 }
