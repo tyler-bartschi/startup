@@ -42,14 +42,14 @@
             </div>
             <!-- eventually I want the images for each book to be on the side, and the information next to it -->
             <h3>Reviews</h3>
-            <div class="book">
+            <div class="book" style="border-bottom: thin black solid;">
                 <div class="book-wrapper">
                     <img class="cover-image" src="images/the-way-of-kings.jpg" alt="The Way of Kings cover" width="75px">
                     <div class="book-data">
                         <p id="book-title"><b>The Way of Kings</b></p>
                         <p id="author">Author: <span>Brandon Sanderson</span></p>
                         <!-- This is the placeholder for the WebSocket data. This will update in real time -->
-                        <p id="average-review">Average: <span>4.4/5</span></p>
+                        <p class="average-review">Average: <span>4.4/5</span></p>
                     </div>
                 </div>
                 <form method="get" action="reviews.html">
@@ -64,11 +64,11 @@
                         <p id="book-title"><b>Crime and Punishment</b></p>
                         <p id="author">Author: <span>Fyodor Dostoevsky</span></p>
                         <!-- also a placeholder for WebSocket data -->
-                        <p id="average-review">Average: <span>1.5/5</span></p>
+                        <p class="average-review">Average: <span>1.5/5</span></p>
                     </div>
                 </div>
                 <!-- &#10003 is the HTML code for a checkmark -->
-                <button class="review-button" type="submit" disabled>&#10003 Reviewed</button>
+                <button class="review-button disabled" type="submit" disabled>&#10003 Reviewed</button>
             </div>
         </main>
         <footer>

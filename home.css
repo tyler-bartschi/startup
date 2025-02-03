@@ -40,11 +40,14 @@ h4 {
     border: thin solid black;
     border-radius: .25em;
     padding: .5em;
-
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 #book-title {
     margin: 0;
+    margin-bottom: 0.5em;
 }
 
 #author {
@@ -69,4 +72,32 @@ h4 {
     padding-top: 0.5em;
     color: rgb(255, 253, 253);
     font-style: italic;
+}
+
+.review-button {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-radius: 0.25em;
+    background-color: rgb(96, 96, 104);
+    color: rgb(255, 253, 253);
+}
+
+.disabled {
+    background-color: rgb(34, 158, 85);
+}
+
+.average-review {
+    flex: 0 15px;
+    /* justify-self: bottom; */
+    position: absolute;
+    bottom: 0;
+    margin-bottom: .5em;
+}
+
+.review-button:hover {
+    background-color: rgb(142, 142, 153);
+}
+
+.disabled:hover {
+    background-color: rgb(34, 158, 85);
 }
