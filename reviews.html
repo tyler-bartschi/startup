@@ -111,35 +111,54 @@
             </div>
             <!-- This will use database data to render past comments -->
             <!-- it might also use WebSocket so new comments are rendered in real time -->
-            <div id="Review">
-                <p><b>Score: </b>5/5</p>
-                <p><b>Comment: </b>This book was so good! Loved it!</p>
-                <p><b>From: </b>Tyler Bartschi</p>
-            </div>
-            <hr>
-            <div id="Review">
-                <p><b>Score: </b>5/5</p>
-                <p><b>Comment: </b>Yay!</p>
-                <p><b>From: </b>Someone</p>
-            </div>
-            <hr>
-            <div id="Review">
-                <p><b>Score: </b>5/5</p>
-                <p><b>Comment: </b>Yeah yeah.</p>
-                <p><b>From: </b>Bob</p>
-            </div>
-            <hr>
-            <div id="Review">
-                <p><b>Score: </b>4/5</p>
-                <p><b>Comment: </b>Pretty good</p>
-                <p><b>From: </b>Sam</p>
-            </div>
-            <hr>
-            <div id="Review">
-                <p><b>Score: </b>3/5</p>
-                <p><b>Comment: </b>It was pretty okay</p>
-                <p><b>From: </b>Placeholder</p>
-            </div>
+
+            <div class="accordion" id="collapsible-reviews">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="main-heading">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReviews" aria-expanded="true" aria-controls="collapseReviews">
+                            Other Reviews
+                        </button>
+                    </h2>
+                    <div id="collapseReviews" class="accordion-collapse collapse show" aria-labelledby="main-heading" data-bs-parent="#collapsible-reviews">
+                        <div class="accordion-body">
+                            <div class="review">
+                                <!-- <p><b>Score: </b>5/5</p> -->
+                                <span class="review-star">★★★★★</span>
+                                <span class="review-comment">This book was so good! Loved it!</span>
+                                <p><b>From: </b>Tyler Bartschi</p>
+                            </div>
+                            <hr>
+                            <div class="review">
+                                <!-- <p><b>Score: </b>5/5</p> -->
+                                <span class="review-star">★★★★★</span>
+                                <p><b>Comment: </b>Yay!</p>
+                                <p><b>From: </b>Someone</p>
+                            </div>
+                            <hr>
+                            <div class="review">
+                                <!-- <p><b>Score: </b>5/5</p> -->
+                                <span class="review-star">★★★★★</span>
+                                <p><b>Comment: </b>Yeah yeah.</p>
+                                <p><b>From: </b>Bob</p>
+                            </div>
+                            <hr>
+                            <div class="review">
+                                <!-- <p><b>Score: </b>4/5</p> -->
+                                <span class="review-star">★★★★</span>
+                                <p><b>Comment: </b>Pretty good</p>
+                                <p><b>From: </b>Sam</p>
+                            </div>
+                            <hr>
+                            <div class="review">
+                                <!-- <p><b>Score: </b>3/5</p> -->
+                                <span class="review-star">★★★</span>
+                                <p><b>Comment: </b>It was pretty okay</p>
+                                <p><b>From: </b>Placeholder</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
         </main>
         <footer>
             <div>
@@ -148,7 +167,7 @@
             </div>
         </footer>
         <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"
         ></script>

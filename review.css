@@ -45,7 +45,8 @@
 }
 
 h3 {
-    
+    font-weight: bold !important;
+    padding-top: 1em;
 }
 
 h4 {
@@ -62,7 +63,6 @@ h4 {
     justify-self: center;
     font-weight: bold;
     font-size: 20px;
-    /* text-decoration: underline; */
 }
 
 .data-table {
@@ -83,6 +83,22 @@ h4 {
     margin-top: 1em;
 }
 
+.accordion {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.accordion-button {
+    background-color: rgb(96, 96, 104) !important;
+    color: rgb(255, 253, 253) !important;
+    font-weight: bold;
+    font-size: 20px !important;
+}
+
+.review-star {
+    color: rgb(220, 223, 50);
+}
+
 @media (max-width: 600px) {
     .image {
         display: none;
@@ -91,4 +107,8 @@ h4 {
         margin-left: 0em;
         margin-right: 0.5em;
     }
+}
+
+.accordion-button:hover {
+    text-decoration: underline;
 }
