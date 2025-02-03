@@ -4,6 +4,8 @@
     flex-direction: row;
     columns: 3;
     align-items: top;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .image {
@@ -38,7 +40,8 @@
     margin-top: 0.5em;
     display: flex;
     flex-direction: column;
-    
+    background-color: rgb(96, 96, 104);
+    color: rgb(255, 253, 253);
 }
 
 h4 {
@@ -49,7 +52,6 @@ h4 {
 
 .rating-data > p {
     margin-bottom: 0;
-    
 }
 
 .title {
@@ -57,6 +59,20 @@ h4 {
     font-weight: bold;
     font-size: 20px;
     /* text-decoration: underline; */
+}
+
+.data-table {
+    border-bottom: thin black dotted;
+    margin-bottom: 1em;
+    margin-top: 0.5em;
+}
+
+.rating {
+    font-weight: bold;
+}
+
+.star {
+    color: rgb(243, 247, 20);
 }
 
 @media (max-width: 600px) {
