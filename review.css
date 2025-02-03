@@ -95,8 +95,22 @@ h4 {
     font-size: 20px !important;
 }
 
+.review {
+    display: flex;
+    flex-direction: column;
+}
+
 .review-star {
     color: rgb(220, 223, 50);
+}
+
+.review-comment {
+    margin: 1em;
+    margin-left: 0.5em;
+}
+
+.review-user {
+    font-style: italic;
 }
 
 @media (max-width: 600px) {
