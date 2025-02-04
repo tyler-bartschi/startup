@@ -30,31 +30,59 @@
                 </nav>
             </header>
         </div>
+        <main>
             <h2>Account Overview</h2>
-            <div>
+            <div class="username-wrapper">
+                <div class="sidebar"></div>
                 <!-- this will pull data from the database to display your username -->
-                <p><b>Username: </b><span>--username--</span></p>
-                <h4>Your Comments</h4>
-                <hr>
-                <!-- this will pull data from the database to display your past comments -->
-                <div>
-                    <p><b>For: </b><span>The Way of Kings</span></p>
-                    <p><b>Score: </b><span>5/5</span></p>
-                    <p><b>Comment: </b><span>--user's comment goes here--</span></p>
-                </div>
-                <hr>
+                <span class="username">--username--</span>
             </div>
-            <div>
+            <div class="past-comments">
+                <h4>Your Comments</h4>
+                <!-- this will pull data from the database to display your past comments -->
+                <div class="comment">
+                    <p class="book-title">The Way of Kings</p>
+                    <p class="star">★★★★★</p>
+                    <p class="comment-text">--user's comment goes here--</p>
+                </div>
+            </div>
+
+            <div class="change-wrapper">
                 <!-- use services to change the email or password to a new email or password -->
                 <h3>Change Email or Password</h3>
                 <form>
-                    <label for="change-email">Email: </label>
-                    <input type="text" placeholder="new email" />
+                    <div class="input-group mb-2">
+                        <label class="input-group-text" for="change-email">Username: </label>
+                        <input class="form-control" type="text" placeholder="new username" />
+                    </div>
                 </form>
-                <button type="submit">Change Email</button>
+
+                <!-- modal doesn't work, perhaps implement this later -->
+                <!-- <div class="modal fade" id="changeUsername" tabindex="-1" aria-labelledby="usernameModal" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="usernameModal">Change Username</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to change your username? This action cannot be undone.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="changeUsername">Change Username</button>
+
                 <form>
-                    <label for="change-password">Password: </label>
-                    <input type="password" placeholder="new password"/>
+                    <div class="input-group mb-2">
+                        <label class="input-group-text" for="change-password">Password: </label>
+                        <input class="form-control" type="password" placeholder="new password"/>
+                    </div>
                 </form>
                 <button type="submit">Change Password</button>
             </div>
