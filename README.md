@@ -95,12 +95,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - I styled the header and footer to have a blue background and display the information contained there prominently, and made these consistent across all pages, linking [main.css](main.css) to all pages.
+- [x] **Navigation elements** - The main navigation for the website is contained in the header, with links to the login, home, reviews, and account pages. There is also navigation within the pages, such as the login or create buttons taking you to the home page, and the review button on the home page taking you to the reviews page.
+- [x] **Responsive to window resizing** - The application is responsive to window resizing by the use of the flex element. In addition, when the screen size gets too small, it removes the header and footer. On the reviews page, if the screen size gets too small it removes the book cover image.
+- [x] **Application elements** - Uses whitespace, spacing, background color, font color, and font sizing to create a pleasing look.
+- [x] **Application text content** - Text content has a consistent font and look, and is displayed in locations that make sense and flow.
+- [x] **Application images** - The book cover images were sized appropriately, and styled to be in the proper locations.
 
 ## 🚀 React part 1: Routing deliverable
 
