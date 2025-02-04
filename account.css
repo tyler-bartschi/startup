@@ -65,3 +65,28 @@ h3 {
 .change-wrapper {
     width: 50vh;
 }
+
+.change-button {
+    margin-bottom: 1em;
+    margin-left: 0.5em;
+    margin-top: 0.25em;
+    border-radius: 0.4em;
+    background-color: rgb(96, 96, 104);
+    color: rgb(255, 253, 253);
+}
+
+.change-button:hover {
+    background-color: rgb(142, 142, 153);
+}
+
+.logout {
+    margin-top: 1em;
+    border-radius: 0.4em;
+    background-color: rgb(231, 22, 22);
+    color: rgb(255, 253, 253);
+    padding: 0.2em 0.5em;
+}
+
+.logout:hover {
+    background-color: rgb(194, 21, 21);
+}
