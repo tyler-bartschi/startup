@@ -98,6 +98,10 @@ h4 {
 .review {
     display: flex;
     flex-direction: column;
+    border: thin black solid;
+    margin-top: 1em;
+    border-radius: .25em;
+    padding: 1em;
 }
 
 .review-star {
@@ -111,6 +115,44 @@ h4 {
 
 .review-user {
     font-style: italic;
+}
+
+.rating-select {
+    margin-right: 1em;
+}
+
+.review-box {
+    margin-top: 1em;
+    border: thin gray solid;
+    padding: 0.5em;
+    border-radius: 0.25em;
+    margin-bottom: 1em;
+}
+
+.score-box {
+    padding: 0.5em 0;
+}
+
+.selection-header {
+    font-weight: bold;
+    padding-right: 0.5em;
+}
+
+.username {
+    padding: 0.5em;
+    margin-left: 0.5em;
+}
+
+.review-text {
+    height: 15vh;
+}
+
+.review-submit {
+    border-color: gray;
+    border-radius: 0.25em;
+    background-color: rgb(31, 170, 26);
+    color: rgb(255, 253, 253);
+    margin-top: 0.5em;
 }
 
 @media (max-width: 600px) {

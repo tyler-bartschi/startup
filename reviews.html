@@ -70,11 +70,6 @@
                                 <td>0</td>
                             </tr>
                         </table>
-                        <!-- <p style="padding-top: 0.5em;">five stars: <span>3</span></p>
-                        <p>four stars: <span>1</span></p>
-                        <p>three stars: <span>1</span></p>
-                        <p>two stars: <span>0</span></p>
-                        <p>one star: <span>0</span></p> -->
                         <p style="padding-top: 0.5em;"><b>Average Rating: </b><span class="rating">4.5</span> / 5</p>
                     </div>
                 </div>
@@ -89,24 +84,28 @@
             </div>
 
             <h3>Reviews</h3>
-            <div>
+            <div class="review-box">
                 <form>
-                    <label for="comment">Your Review:</label>
-                    <textarea id="user-comment" name="varUserReview" placeholder="Enter Your Review Here"></textarea>
-                    <fieldset>
-                        <legend>Overall Score</legend>
-                        <input type="radio" id="five-stars" name="varScore" value="5" checked />
-                        <label for="five-stars">5</label>
-                        <input type="radio" id="four-stars" name="varScore" value="4"/>
-                        <label for="four-stars">4</label>
-                        <input type="radio" id="three-stars" name="varScore" value="3"/>
-                        <label for="three-stars">3</label>
-                        <input type="radio" id="two-stars" name="varScore" value="2"/>
-                        <label for="two-stars">2</label>
-                        <input type="radio" id="one-star" name="varScore" value="1"/>
-                        <label for="one-star">1</label>
-                    </fieldset>
-                    <button type="submit">Submit Review</button>
+                    <div class="score-box">
+                        <label class="selection-header" for="rating-select">Overall Score</label>
+                        <select class="rating-selections" id="rating-select" name="selection">
+                            <option selected>5</option>
+                            <option>4</option>
+                            <option>3</option>
+                            <option>2</option>
+                            <option>1</option>
+                        </select>
+                        <span>/ 5</span>
+                    </div>
+                    <div>
+                        <!-- <label class="input-group-text" for="comment">Your Review:</label> -->
+                        <textarea class="form-control review-text" name="user-review" placeholder="Your Review Here"></textarea>
+                    </div>
+                    <div class="username">
+                        <span>- Your Username</span>
+                    </div>
+                    <button class="review-submit" type="submit">Submit Review</button>
+                    </div>
                 </form>
             </div>
             <!-- This will use database data to render past comments -->
@@ -126,25 +125,21 @@
                                 <span class="review-comment">This book was so good! Loved it!</span>
                                 <span class="review-user">- Tyler</span>
                             </div>
-                            <hr>
                             <div class="review">
                                 <span class="review-star">★★★★★</span>
                                 <span class="review-comment">Placeholder</span>
                                 <span class="review-user">- Placeholder</span>
                             </div>
-                            <hr>
                             <div class="review">
                                 <span class="review-star">★★★★★</span>
                                 <span class="review-comment">placeholder</span>
                                 <span class="review-user">- Placeholder</span>
                             </div>
-                            <hr>
                             <div class="review">
                                 <span class="review-star">★★★★</span>
                                 <span class="review-comment">placeholder</span>
                                 <span class="review-user">- Placeholder</span>
                             </div>
-                            <hr>
                             <div class="review">
                                 <span class="review-star">★★★</span>
                                 <span class="review-comment">placeholder</span>
