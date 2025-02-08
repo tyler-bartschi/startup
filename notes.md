@@ -118,4 +118,23 @@ function join(a, b) {
 - `npm install package-name` will install the package and will add it as a dependency in the Package.json.
 - `npm uninstall package-name` will uninstall the package.\
 - Include the `node_modules` directory in the `.gitignore` because it can get super large
+- Main steps for Node.js
+
+  1. Create your project directory
+  2. Initialize it for use with NPM by running npm init -y
+  3. Make sure .gitignore file contains node_modules
+  4. Install any desired packages with npm install `<package name here>`
+  5. Add `require('<package name here>')` to your application's JavaScript
+  6. Use the code the package provides in your JavaScript
+  7. Run your code with node index.js
+
+### React
+
+#### Components
+
+- taking a piece of the application and creating a single component for it
+- Variable syntax for functions in JavaScript: `const Hello = () => {};`
+- This says create a variable named Hello that stores a function, then inside the curly braces you can put your code, such as returns
+- This can then be rendered with `ReactDOM.render(<Hello />, document.querySelector("#root"));`
+- If you want to use an external CSS file with React, you just import the css file with `import'./index.css` and then set the `className` attribute on an element to apply the related CSS rules to that element.
 - 
