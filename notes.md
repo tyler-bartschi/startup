@@ -85,3 +85,37 @@ You can use the `style` attribute of an HTML element and assign declarations tha
   - `justify-content` aligns the items horizontally
 - Frameworks provide functions and components that commonly appear in web applications.
 - To include Bootstrap in the application, run `npm install bootstrap@5.3.3`, though this will be later during JavaScript.
+
+## React Notes
+
+- JavaScript is an interpreted language, not a compiled one
+- `console.log("string");` will output string to the debugger console
+- To write a function in JavaScript
+
+```Javascript
+function join(a, b) {
+  return a + ' ' + b;
+}
+```
+
+- Line comments: `//`
+- Block comments: `/* */`
+- End statements with semicolon, and code blocks (and their scope) defined with curly braces
+
+### How to Insert JavaScript into HTML
+
+- Script block: direclty include it in the HTML within the `<script>` element
+- External code: use the `src` attribute of the script element to reference an external file
+- Inline event attrihbute: put JavaScript directly inline as part of an event attribute handler
+- `onclick` attribute can reference JavaScipt functions
+
+### Node.js
+
+- Allows JavaScript to be run outside of a browser, allowing it to run on the server itself
+- You can execute a line of javascript with Node.js from console with the `-e` parameter.
+- Use `node filename.js` to execute a JavaScript file, this file can also reference other JavaScript files
+- To use NPM, which can load packages, you need to initialize a directory to run your JavaScript. Once done, packages can be included in my code with the `require` statement
+- `npm install package-name` will install the package and will add it as a dependency in the Package.json.
+- `npm uninstall package-name` will uninstall the package.\
+- Include the `node_modules` directory in the `.gitignore` because it can get super large
+- 
