@@ -2,31 +2,47 @@ import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './app.css'
 
+import {BrowserRouter, NavLink, Route, Routes} from 'react-router-dom';
+import {Login} from "./login/login";
+import {Home} from "./home/home";
+import {Reviews} from "./reviews/reviews";
+import {Account} from "./account/account";
+
 export default function App() {
     return ( 
-        <div className="body">
-            <div className="header-color">
-                <header className="container-fluid">
-                    <nav>
-                        <a href="/" className="page-title"><h1>badreads</h1></a>
-                        <menu className="nav">
-                            <li className="nav-item"><a href="index.html" className="nav-link px-2 py-1 link-dark">Login</a></li>
-                            <li className="nav-item"><a href="home.html" className="nav-link px-2 py-1 link-dark">Home</a></li>
-                            <li className="nav-item"><a href="reviews.html" className="nav-link px-2 py-1 link-dark">Reviews</a></li>
-                            <li className="nav-item"><a href="account.html" className="nav-link px-2 py-1 link-dark">Account</a></li>
-                        </menu>
-                    </nav>
-                </header>
-            </div>
-            <main className="container-fluid text-center">
-                App components go here
-            </main>
-            <footer>
-                <div>
-                    <p><b>Author: </b><span className="dev-name">Tyler Bartschi</span></p>
-                    <p><b>GitHub: </b><a href="https://github.com/tyler-bartschi/startup" className="source-link">Source Code</a></p>
+        <BrowserRouter>
+            <div className="body">
+                <div className="header-color">
+                    <header className="container-fluid">
+                        <nav>
+                            <NavLink to="/" className="page-title"><h1>badreads</h1></NavLink>
+                            <menu className="nav">
+                                <li className="nav-item">
+                                    <NavLink to="/" className="nav-link px-2 py-1 link-dark">Login</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to="home" className="nav-link px-2 py-1 link-dark">Home</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to="reviews" className="nav-link px-2 py-1 link-dark">Reviews</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to="account" className="nav-link px-2 py-1 link-dark">Account</NavLink>
+                                </li>
+                            </menu>
+                        </nav>
+                    </header>
                 </div>
-            </footer>
-        </div>
+                <main className="container-fluid text-center">
+                    App components go here
+                </main>
+                <footer>
+                    <div>
+                        <p><b>Author: </b><span className="dev-name">Tyler Bartschi</span></p>
+                        <p><b>GitHub: </b><a href="https://github.com/tyler-bartschi/startup" className="source-link">Source Code</a></p>
+                    </div>
+                </footer>
+            </div>
+        </BrowserRouter>
     );
 }
