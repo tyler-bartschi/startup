@@ -19,7 +19,7 @@ export function Reviews() {
                 {/* and WebSocket will update this in real-time to reflect new reviews */}
                 <div className="rating-data-wrapper">
                     <div className="rating-data">
-                        <h4>Total Ratings</h4>
+                        <h4 class="h4-review" >Total Ratings</h4>
                         <table className="data-table" >
                             <tr>
                                 <td><span className="star">★★★★★</span></td>
@@ -48,14 +48,14 @@ export function Reviews() {
             </div>
 
             <div className="summary container-fluid">
-                <h4>Summary</h4>
+                <h4 className='h4-summary' >Summary</h4>
                 <p>I long for the days before the Last Desolation. Before the Heralds abondoned us and the Knights Radiant turned against us. When there was still magic in Roshar and honor in the hearts of men.</p>
                 <p>In the end, not war but victory proved the greater test. Did our foes see that the harder they fought, the fiercer our resistance? Fire and hammer forge a sword; time and neglect rust it away. So we won the world, yet lost it.</p>
                 <p>Now there are four whom we watch: the surgeon, forced to forsake healing and fight in the most brutal war of our time; the assassin, who weeps as he kills; the liar, who wears her scholar's mantle over a thief's heart; and the prince, whose eyes open to the ancient past as his thirst for battle wanes.</p>
                 <p>One of them may redeem us. One of them will destory us.</p>
             </div>
 
-            <h3>Reviews</h3>
+            <h3 class="h3-review">Reviews</h3>
             <div className="review-box">
                 <form>
                     <div className="score-box">
