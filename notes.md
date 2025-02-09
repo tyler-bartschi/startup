@@ -137,4 +137,4 @@ function join(a, b) {
 - This says create a variable named Hello that stores a function, then inside the curly braces you can put your code, such as returns
 - This can then be rendered with `ReactDOM.render(<Hello />, document.querySelector("#root"));`
 - If you want to use an external CSS file with React, you just import the css file with `import'./index.css` and then set the `className` attribute on an element to apply the related CSS rules to that element.
-- 
+- external CSS stylesheets, once imported to React, will apply **globally** to all components
