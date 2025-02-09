@@ -1,10 +1,10 @@
-main {
+.main-account {
     display: flex;
     flex-direction: column;
     padding: 1em;
 }
 
-h2 {
+.h2-account {
     font-weight: bold !important;
 }
 
@@ -32,7 +32,7 @@ h2 {
     margin-bottom: 1em;
 }
 
-h4 {
+.h4-account {
     font-weight: bold !important;
     /* border-bottom: thin black solid; */
 }
@@ -57,7 +57,7 @@ h4 {
     border-radius: 0.25em;
 }
 
-h3 {
+.h3-account {
     font-weight: bold !important;
     margin-bottom: 0.5em !important;
 }

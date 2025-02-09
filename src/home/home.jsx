@@ -7,13 +7,13 @@ export function Home() {
 
             <div className="quote-wrapper">
                 <div className="quote-of-the-day">
-                    <h4>Quote of the Day</h4>
+                    <h4 class="h4-home">Quote of the Day</h4>
                     <span className="quote">Tell them hi for me. Please.</span>
                     <span className="quote-author">-Zachary Huckins</span>
                 </div>
             </div>
 
-            <h3>Reviews</h3>
+            <h3 className="h3-home">Reviews</h3>
             <div className="book">
                 <div className="book-wrapper">
                     <img className="cover-image" src="/the-way-of-kings.jpg" alt="The Way of Kings cover" width="150px" />

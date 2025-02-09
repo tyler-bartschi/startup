@@ -18,13 +18,13 @@
     background-color: rgb(96, 96, 104);
 }
 
-h3 {
+.h3-home {
     border-bottom: thin black solid;
     padding-top: 1em;
     font-weight: bold !important;
 }
 
-h4 {
+.h4-home {
     color: rgb(255, 253, 253);
     font-weight: bold !important;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

@@ -43,12 +43,18 @@
     color: rgb(255, 253, 253);
 }
 
-h3 {
+.h3-review {
     font-weight: bold !important;
     padding-top: 1em;
 }
 
-h4 {
+.h4-review {
+    align-self: center;
+    font-weight: bold !important;
+    border-bottom: thin black solid;
+}
+
+.h4-summary {
     align-self: center;
     font-weight: bold !important;
     border-bottom: thin black solid;
