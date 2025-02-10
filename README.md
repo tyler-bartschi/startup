@@ -106,9 +106,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - Routing between login and voting components.
+- [x] **Bundled using Vite** - I used npm and vite to bundle the startup port it to react, as well as to deploy it to the server.
+- [x] **Components** - I made jsx components for the login, home, reviews, and account pages. I also made an app.jsx for the top-level structure.
+- [x] **Router** - I implemented routing in the app.jsx to route between the different login, home, reviews, and account pages.
 
 ## 🚀 React part 2: Reactivity
 
