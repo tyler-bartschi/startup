@@ -6,7 +6,7 @@ export function Login() {
         <main className="container-fluid text-center">
             <h1 className="welcome">Welcome to <span className="welcome-title">badreads</span>!</h1>
             <div className="login-box">
-                <form method="get" action="home.html">
+                <form>
                     <div className="input-group mb-3 pt-3">
                         <span className="input-group-text">Username</span>
                         <input className="form-control" type="text" placeholder="your username" />
