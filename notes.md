@@ -169,4 +169,46 @@ function join(a, b) {
 - Classes also exist, and must have a constructor
 - A `#` prefix in a class makes the property or function private
 - `extends` keyword allows inheritance, `super()` references the parent class, and can be used to either deliver parameters for the constructor or call a parent function
+- setTimeout takes a function that will be called once the given milliseconds delay has passed
+- setInterval takes a function and a delay, and will continually call the function every time the delay has passed
+- You can cancel a setInterval by capturing the result of the call and then passing the result to the clearInterval function
+- JSON stands for JavaScript Object Notation 
+- JSON documnets contain one of the following data types: string, number, boolean, array, object, null. Most commonly contains an object
+- JSON is always encoded with UTF-8
+- JSON.parse turns it into JavaScript, JSON.stringify turns JavaScript (like an object) into a JSON document
+- browser's localStorage API allows you to persistently store and retrieve data on a user's browser across user sessions and HTML page renderings
+- Four main functions to use localStorage
+  - `setItem(name, value)` - sets a named item's value into localStorage
+  - `getItem(name)` - gets a named item's value from localStorage
+  - `removeItem(name)` -removes a named item from localStorage
+  - `clear()` - clears all items in localStorage
+- Destructuring - process of pulling individual items out of an existing one
+- Can do so with arrays
+
+```JavaScript
+const a = [1, 2, 4, 5];
+const [b, c] = a;;
+console.log(b, c);
+// OUTPUT: 1, 2
+
+const [b, c, ...others] = a;
+console.log(b, c, others);
+// OUTPUT: 1, 2, [4, 5]
+```
+
+- You can also destructure objects, but you must explicity state the properties you want to putll
+- You can also map the names to new variables like so: `const { a: count, b: type } = o;`
+- Default values can also be provided
+- .useState is a React hook
+- hooks ar used to allow function components to do everything a class componenet can and more
+- useEffect allows lifecycle events, such as every time the component is rendered
+- You can pass an array of dependencies to the useEffect hook, telling it to call when the dependency is clicked
+- For the useState hook, when you call the setState function, React automatically passes the current state as an argument. You can name this and then use it, for example: `setCount(previousState => previousState+1);`
+- an empty array passed as a dependency to useEffect will ensure it only runs once, when rendered
+
+### Reactivity with React
+
+- Three major compnents: props, state, and render
+- React has a table with the state values for every component, and will rerender every component that has had a change periodically
+- Updates happen asynchronously, so the next line of code might not be able to access the updated state
 - 
