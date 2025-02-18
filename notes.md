@@ -138,3 +138,35 @@ function join(a, b) {
 - This can then be rendered with `ReactDOM.render(<Hello />, document.querySelector("#root"));`
 - If you want to use an external CSS file with React, you just import the css file with `import'./index.css` and then set the `className` attribute on an element to apply the related CSS rules to that element.
 - external CSS stylesheets, once imported to React, will apply **globally** to all components
+
+## JavaScript Notes
+
+- Console object allows interactivity with the JavaScript console
+- `console.log('hello');` prints "hello"
+- You can use %s to create a formatted message
+- Can also specify CSS to style to output
+- To time something, use `console.time("name");` at the beginning and `console.timeEnd("nam");` at the end, it will output how long it took
+- Can use `console.count("name");` to see how many times a block of code is called
+- Functions are first class objects: can be assigned a name, passed as a parameter, returned as a result, and referenced form an object or array just like any other variable
+- sytnax to declare a function: `function name(parameters) {}`
+- If a parameter is not provided in the function call, the paramemter has the value `undefined`
+- default value the same way python and C++ do
+- You can define an anonymous function and assign it to the variable, basically the function doesn't have a specific name, it is just stored in the variable
+- Can use higher-order functions
+- Can also define functions inside of other functions
+- Arrow syntax removes the need for the function keyword, instead just place `=>` after the parameter declaration
+  - Basic arrow syntax function that always returns 3:  `() => 3;`
+- Curly braces are optional; if no curly braces then the return keyword is optional, and it will automatically return the result of the expression. If curly braces are present, return keyword is needed
+- Closure helps to reference variables that are out of scope for an arrow function, see [reference](https://github.com/webprogramming260/.github/blob/main/profile/javascript/arrow/arrow.md) for more detail
+- Arrow functions can be included directly in JSX, without needing to define other functions
+- Arrays created with []
+- Lots of functions associated with arrays, see [this page](https://github.com/webprogramming260/.github/blob/main/profile/javascript/array/array.md) for details
+- Objects are created with the `new` operator, and are a collection of name value pairs called properties. Name must be string or symbol, but the value can be anything. Accessed with the dot operator or bracket notation
+- Object-literal syntax looks king of like a python dictionary
+- Has several functions: `entires` returns an array of key-value pairs, `keys` returns an array of keys, `values` returns an array of values. All called by `Object.entries(name);`
+- Any function that returns an object is considered a contructor and can be invoked with the new operator
+- `this` pointer is kind of like the `self` of Python, I think
+- Classes also exist, and must have a constructor
+- A `#` prefix in a class makes the property or function private
+- `extends` keyword allows inheritance, `super()` references the parent class, and can be used to either deliver parameters for the constructor or call a parent function
+- 
