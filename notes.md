@@ -211,4 +211,6 @@ console.log(b, c, others);
 - Three major compnents: props, state, and render
 - React has a table with the state values for every component, and will rerender every component that has had a change periodically
 - Updates happen asynchronously, so the next line of code might not be able to access the updated state
+
+- `static` means the properties belong to the class itself, rather than to an instance
 - 
