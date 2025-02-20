@@ -213,4 +213,15 @@ console.log(b, c, others);
 - Updates happen asynchronously, so the next line of code might not be able to access the updated state
 
 - `static` means the properties belong to the class itself, rather than to an instance
-- 
+- `let` is only defined in the block scope (innermost {}), and can be reassigned. It cannot be redeclared in the same scope, but can be declared in multiple scopes
+- `var` is defined in the function scope, and can be reassigned or redeclared
+- `const` is defined in the block scope, cannot be reassigned and cannot be redeclared 
+
+### Promises
+
+- rendering HTML uses a single thread, so if you have an intensive process use a `Promise`
+- call the promise object constructor and pass it an executor function that runs the operation
+- state of promise execution in one of three states: pending (currently running asynchronously), fulfilled (completed successfully), rejected (failed to complete)
+- `setTimeout` takes a number of milliseconds to wait and a function to call after that time expires
+- promise executor function takes two functions as parameters, `resolve` and `reject`. Calling `resolve` sets the promise to the fulfilled state, calling `reject` sets the promise to the rejected state
+- Promise object has three functions: `then` is called if the promise is fulfilled, `catch` is called if the promise is rejected, and `finally` is always called after all processing is completed
