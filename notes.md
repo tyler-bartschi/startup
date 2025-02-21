@@ -225,3 +225,10 @@ console.log(b, c, others);
 - `setTimeout` takes a number of milliseconds to wait and a function to call after that time expires
 - promise executor function takes two functions as parameters, `resolve` and `reject`. Calling `resolve` sets the promise to the fulfilled state, calling `reject` sets the promise to the rejected state
 - Promise object has three functions: `then` is called if the promise is fulfilled, `catch` is called if the promise is rejected, and `finally` is always called after all processing is completed
+
+### Async/Await
+
+- `await` wraps the execution of a promise and removes the need to chain functions, and will block until the promise state moves to fulfilled, or throws an exception if the state moves to rejected'
+- you cannot call `await` unless it is called at the top level of the JavaScript, or it is in a function that is defined with the `async` keyword. `async` transforms the function so that it returns a promise that will resolve to the value that was previously returned by the function
+- `asycn` declares a function that returns a promise, and the `await` keyword wraps a call to the async function, blocking execution until it has resolved, and returns the result of the promise
+- Do the CodePen assignments for promises and async/await
