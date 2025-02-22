@@ -1,7 +1,9 @@
 import React from 'react';
 import "./home.css";
+import {useNavigate} from 'react-router-dom';
 
 export function Home({average, updateScore}) {
+    const navigate = useNavigate();
     const [quote, setQuote] = React.useState("...loading");
     const [quoteAuthor, setQuoteAuthor] = React.useState('ur mom');
 
@@ -37,10 +39,10 @@ export function Home({average, updateScore}) {
                         <div className="book-data">
                             <p id="book-title"><b>The Way of Kings</b></p>
                             <p id="author">Author: Brandon Sanderson</p>
-                            <p className="average-review">Average: <span className="rating">4.4</span> / 5</p>
+                            <p className="average-review">Average: <span className="rating">{average}</span> / 5</p>
                         </div>
                         <div className="button-wrapper">
-                            <button className="review-button" type="submit">+ Review</button>
+                            <button className="review-button" type="submit" onClick={() => navigate('/reviews')} >+ Review</button>
                         </div>
                     </div>
                 </div>
