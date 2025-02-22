@@ -124,7 +124,9 @@
 }
 
 .rating-select {
-    margin-right: 1em;
+    margin-right: 0.2em;
+    width: 1.5em;
+    height: 1.5em;
 }
 
 .review-box {

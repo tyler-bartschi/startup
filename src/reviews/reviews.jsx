@@ -49,13 +49,7 @@ export function Reviews({userName, average, updateScore}) {
                 <form>
                     <div className="score-box">
                         <label className="selection-header" for="rating-select">Overall Score</label>
-                        <select className="rating-selections" id="rating-select" name="selection">
-                            <option selected>5</option>
-                            <option>4</option>
-                            <option>3</option>
-                            <option>2</option>
-                            <option>1</option>
-                        </select>
+                        <input className="text rating-select"></input>
                         <span>/ 5</span>
                     </div>
                     <div>
@@ -113,3 +107,12 @@ export function Reviews({userName, average, updateScore}) {
         </main>
     );
 }
+
+
+<select className="rating-selections" id="rating-select" name="selection">
+                            <option selected>5</option>
+                            <option>4</option>
+                            <option>3</option>
+                            <option>2</option>
+                            <option>1</option>
+                        </select>
