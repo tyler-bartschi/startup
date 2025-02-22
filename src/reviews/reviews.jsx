@@ -2,9 +2,11 @@ import React from 'react';
 import "./review.css";
 import {ScoreTable} from './scoreTable';
 import {Score} from './scoreModifier';
+import {OtherReviews} from "./otherReviews";
 
 export function Reviews({userName, average, updateScore}) {
     const [scoreTable, updateScoreTable] = React.useState(<ScoreTable />);
+    const [otherRevs, setOtherReviews] = React.useState(<OtherReviews />);
     const [reviewScore, setReviewScore] = React.useState("");
     const [userReview, setUserReview] = React.useState("");
     const [revs, setReviews] = React.useState(JSON.parse(localStorage.getItem('scores')) || []);
@@ -13,6 +15,7 @@ export function Reviews({userName, average, updateScore}) {
             localStorage.setItem('scores', JSON.stringify(revs));
             updateScoreTable(<ScoreTable />);
             updateScore(revs);
+            setOtherReviews(<OtherReviews />);
     }, [revs]);
 
     // functions to check if the score entered is valid, and display a visual indication if it is not
@@ -98,33 +101,7 @@ export function Reviews({userName, average, updateScore}) {
                         </button>
                     </h2>
                     <div id="collapseReviews" className="accordion-collapse collapse show" aria-labelledby="main-heading" data-bs-parent="#collapsible-reviews">
-                        <div className="accordion-body">
-                            <div className="review">
-                                <span className="review-star">★★★★★</span>
-                                <span className="review-comment">This book was so good! Loved it!</span>
-                                <span className="review-user">- Tyler</span>
-                            </div>
-                            <div className="review">
-                                <span className="review-star">★★★★★</span>
-                                <span className="review-comment">Placeholder</span>
-                                <span className="review-user">- Placeholder</span>
-                            </div>
-                            <div className="review">
-                                <span className="review-star">★★★★★</span>
-                                <span className="review-comment">placeholder</span>
-                                <span className="review-user">- Placeholder</span>
-                            </div>
-                            <div className="review">
-                                <span className="review-star">★★★★</span>
-                                <span className="review-comment">placeholder</span>
-                                <span className="review-user">- Placeholder</span>
-                            </div>
-                            <div className="review">
-                                <span className="review-star">★★★</span>
-                                <span className="review-comment">placeholder</span>
-                                <span className="review-user">- Placeholder</span>
-                            </div>
-                        </div>
+                        {otherRevs}
                     </div>
                 </div>
             </div>

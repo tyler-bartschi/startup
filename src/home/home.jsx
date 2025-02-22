@@ -13,7 +13,7 @@ export function Home({average, updateScore}) {
         setQuoteAuthor("Zachary Huckins");
     }, []);
 
-    // sets an interval to repeated attempt to update the score
+    // sets an interval to repeatedly attempt to update the score
     React.useEffect(() => {
         updateScore(JSON.parse(localStorage.getItem('scores')) || []);
         const interval = setInterval(() => {updateScore(JSON.parse(localStorage.getItem('scores')) || [])}, 2000);
