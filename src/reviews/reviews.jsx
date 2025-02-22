@@ -1,7 +1,18 @@
 import React from 'react';
 import "./review.css";
+import {ScoreTable} from './scoreTable';
 
 export function Reviews({average, updateScore}) {
+    const [scoreTable, updateScoreTable] = React.useState(<ScoreTable />);
+
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            updateScoreTable(<ScoreTable />);
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <main className="container-fluid">
             <div className="book-wrapper">
@@ -20,28 +31,7 @@ export function Reviews({average, updateScore}) {
                 <div className="rating-data-wrapper">
                     <div className="rating-data">
                         <h4 class="h4-review" >Total Ratings</h4>
-                        <table className="data-table" >
-                            <tr>
-                                <td><span className="star">★★★★★</span></td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td><span className="star">★★★★</span></td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td><span className="star">★★★</span></td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td><span className="star">★★</span></td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td><span className="star">★</span></td>
-                                <td>0</td>
-                            </tr>
-                        </table>
+                        {scoreTable}
                         <p><b>Average Rating: </b><span className="rating-reviews">{average}</span> / 5</p>
                     </div>
                 </div>
