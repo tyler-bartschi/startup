@@ -62,7 +62,7 @@ export function Reviews({userName, average, updateScore}) {
                         <textarea className="form-control review-text" name="user-review" placeholder="Your Review Here"></textarea>
                     </div>
                     <div className="username">
-                        <span>- Your Username</span>
+                        <span>- {userName}</span>
                     </div>
                     <div>
                     <button className="review-submit" type="submit">Submit Review</button>
