@@ -16,6 +16,21 @@ export function Reviews({userName, average, updateScore}) {
         return () => clearInterval(interval);
     }, []);
 
+    function check_score(e) {
+        if (e.target.value >= 0 && e.target.value <= 5) {
+            setReviewScore(e.target.value);
+        } else {
+            e.target.classList.add('shake');
+            e.target.classList.add('flash-red');
+            setTimeout(() => {removeEffect(e);}, 200);
+        }
+    }
+
+    async function removeEffect(e) {
+        e.target.classList.remove('shake');
+        e.target.classList.remove('flash-red');
+    }
+
     return (
         <main className="container-fluid">
             <div className="book-wrapper">
@@ -51,7 +66,7 @@ export function Reviews({userName, average, updateScore}) {
                 <form>
                     <div className="score-box">
                         <label className="selection-header" for="rating-select">Overall Score</label>
-                        <input className="text rating-select" value={reviewScore} onChange={(e) => setReviewScore(e.target.value)} placeholder="5"></input>
+                        <input className="text rating-select" value={reviewScore} onChange={(e) => check_score(e)} placeholder="5"></input>
                         <span>/ 5</span>
                     </div>
                     <div>

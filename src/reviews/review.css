@@ -176,3 +176,19 @@
 .accordion-button:hover {
     text-decoration: underline;
 }
+
+@keyframes shake {
+    0% {transform: translateX(0); }
+    25% {transform: translateX(-3px); }
+    50% {transform: translateX(0); }
+    75% {transform: translateX(3px); }
+    100% {transform: translateX(0); }
+}
+
+.shake {
+    animation: shake 0.2s;
+}
+
+.flash-red {
+    background-color: red;
+}
