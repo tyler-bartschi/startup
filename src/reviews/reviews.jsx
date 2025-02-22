@@ -8,13 +8,13 @@ export function Reviews({userName, average, updateScore}) {
     const [reviewScore, setReviewScore] = React.useState("");
     const [userReview, setUserReview] = React.useState("");
     const [revs, setReviews] = React.useState(JSON.parse(localStorage.getItem('scores')) || []);
-
-    // maybe change this to whenever the list of reviews updates
+    
     React.useEffect(() => {
+            localStorage.setItem('scores', JSON.stringify(revs));
             updateScoreTable(<ScoreTable />);
             updateScore(revs);
     }, [revs]);
-    
+
     // functions to check if the score entered is valid, and display a visual indication if it is not
     function check_score(e) {
         if (e.target.value >= 0 && e.target.value <= 5) {
@@ -26,7 +26,7 @@ export function Reviews({userName, average, updateScore}) {
         }
     }
 
-    async function removeEffect(e) {
+    function removeEffect(e) {
         e.target.classList.remove('shake');
         e.target.classList.remove('flash-red');
     }
@@ -34,11 +34,9 @@ export function Reviews({userName, average, updateScore}) {
     async function updateReviews(reviewScore, userReview, userName) {
         let cur_score = new Score(userName, userReview, reviewScore);
         setReviews(prevValue => [cur_score, ...prevValue]);
+        setReviewScore("");
+        setUserReview("");
     }
-
-    React.useEffect(() => {
-        localStorage.setItem('scores', JSON.stringify(revs));
-    }, [revs]);
 
     return (
         <main className="container-fluid">

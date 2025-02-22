@@ -7,7 +7,6 @@ export function ScoreTable() {
 
     if (scoresText) {
         let raw_scores = JSON.parse(scoresText);
-        console.log("scoreTable: ", raw_scores);
         let scores = countScores(raw_scores);
         for (let i = 5; i > 0; i--) {
             scoreRows.push(
