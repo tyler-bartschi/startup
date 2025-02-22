@@ -35,3 +35,15 @@
 .create-btn:hover {
     background-color: rgb(72, 75, 83) !important;
 }
+
+.welcome-user {
+    margin: 1em;
+}
+
+.logout-btn {
+    background-color: rgb(196, 28, 28) !important;
+}
+
+.logout-btn:hover {
+    background-color: rgb(141, 18, 18) !important; 
+}
