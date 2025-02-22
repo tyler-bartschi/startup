@@ -7,6 +7,7 @@ export function Reviews({userName, average, updateScore}) {
     const [reviewScore, setReviewScore] = React.useState("");
     const [userReview, setUserReview] = React.useState("");
 
+    // maybe change this to whenever the list of reviews updates
     React.useEffect(() => {
         const interval = setInterval(() => {
             updateScore();
@@ -76,7 +77,8 @@ export function Reviews({userName, average, updateScore}) {
                         <span>- {userName}</span>
                     </div>
                     <div>
-                    <button className="review-submit" type="submit" disabled={!reviewScore || !userReview}>Submit Review</button>
+                        {/* when submitting, check if the review score is 0. if it is, reject */}
+                        <button className="review-submit" type="submit" disabled={!reviewScore || !userReview}>Submit Review</button>
                     </div>
                 </form>
             </div>
@@ -124,12 +126,3 @@ export function Reviews({userName, average, updateScore}) {
         </main>
     );
 }
-
-
-<select className="rating-selections" id="rating-select" name="selection">
-                            <option selected>5</option>
-                            <option>4</option>
-                            <option>3</option>
-                            <option>2</option>
-                            <option>1</option>
-                        </select>
