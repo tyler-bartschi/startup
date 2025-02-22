@@ -1,7 +1,7 @@
 import React from 'react';
 import "./review.css";
 
-export function Reviews() {
+export function Reviews({average, updateScore}) {
     return (
         <main className="container-fluid">
             <div className="book-wrapper">
@@ -42,7 +42,7 @@ export function Reviews() {
                                 <td>0</td>
                             </tr>
                         </table>
-                        <p><b>Average Rating: </b><span className="rating-reviews">4.5</span> / 5</p>
+                        <p><b>Average Rating: </b><span className="rating-reviews">{average}</span> / 5</p>
                     </div>
                 </div>
             </div>

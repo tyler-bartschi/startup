@@ -64,7 +64,12 @@ export default function App() {
                                                         setAverageScore(updateAverageScore());
                                                     }} 
                                                 />} />
-                    <Route path='/reviews' element={<Reviews />} />
+                    <Route path='/reviews' element={<Reviews 
+                                                        average={averageScore}
+                                                        updateScore={() => {
+                                                            setAverageScore(updateAverageScore());
+                                                        }}
+                                                    />} />
                     <Route path='/account' element={<Account />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
