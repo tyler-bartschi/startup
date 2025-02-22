@@ -15,6 +15,7 @@ export function Home({average, updateScore}) {
 
     // sets an interval to repeated attempt to update the score
     React.useEffect(() => {
+        updateScore(JSON.parse(localStorage.getItem('scores')) || []);
         const interval = setInterval(() => {updateScore(JSON.parse(localStorage.getItem('scores')) || [])}, 2000);
         
         return () => clearInterval(interval);

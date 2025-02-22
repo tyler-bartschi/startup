@@ -6,6 +6,8 @@ export function Authenticated(props){
 
     async function logout() {
         localStorage.removeItem('userName');
+        // for now, remove all the scores upon logout
+        localStorage.removeItem('scores');
         props.onLogout()
     }
 
