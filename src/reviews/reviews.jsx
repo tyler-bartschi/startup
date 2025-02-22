@@ -22,7 +22,7 @@ export function Reviews({userName, average, updateScore}) {
         } else {
             e.target.classList.add('shake');
             e.target.classList.add('flash-red');
-            setTimeout(() => {removeEffect(e);}, 200);
+            setTimeout(() => removeEffect(e), 200);
         }
     }
 
