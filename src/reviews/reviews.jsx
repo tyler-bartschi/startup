@@ -2,11 +2,12 @@ import React from 'react';
 import "./review.css";
 import {ScoreTable} from './scoreTable';
 
-export function Reviews({average, updateScore}) {
+export function Reviews({userName, average, updateScore}) {
     const [scoreTable, updateScoreTable] = React.useState(<ScoreTable />);
 
     React.useEffect(() => {
         const interval = setInterval(() => {
+            updateScore();
             updateScoreTable(<ScoreTable />);
         }, 5000);
 
@@ -26,8 +27,6 @@ export function Reviews({average, updateScore}) {
                         <p><b>Page Count: </b><span>1,280</span></p>
                     </div>
                 </div>
-                {/* placeholder for database data that will render the number of different reviews */}
-                {/* and WebSocket will update this in real-time to reflect new reviews */}
                 <div className="rating-data-wrapper">
                     <div className="rating-data">
                         <h4 class="h4-review" >Total Ratings</h4>

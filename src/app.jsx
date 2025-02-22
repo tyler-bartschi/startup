@@ -65,6 +65,7 @@ export default function App() {
                                                     }} 
                                                 />} />
                     <Route path='/reviews' element={<Reviews 
+                                                        userName={userName}
                                                         average={averageScore}
                                                         updateScore={() => {
                                                             setAverageScore(updateAverageScore());
