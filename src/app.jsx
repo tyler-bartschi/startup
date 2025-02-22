@@ -8,8 +8,13 @@ import {Login} from "./login/login";
 import {Home} from "./home/home";
 import {Reviews} from "./reviews/reviews";
 import {Account} from "./account/account";
+import {AuthState} from "./login/authState";
 
 export default function App() {
+    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+    const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+    const [authState, setAuthState] = React.useState(currentAuthState);
+
     return ( 
         <BrowserRouter>
             <div className="body">
@@ -21,22 +26,36 @@ export default function App() {
                                 <li className="nav-item">
                                     <NavLink to="/" className="nav-link px-2 py-1 link-dark">Login</NavLink>
                                 </li>
-                                <li className="nav-item">
-                                    <NavLink to="home" className="nav-link px-2 py-1 link-dark">Home</NavLink>
-                                </li>
-                                <li className="nav-item">
-                                    <NavLink to="reviews" className="nav-link px-2 py-1 link-dark">Reviews</NavLink>
-                                </li>
-                                <li className="nav-item">
-                                    <NavLink to="account" className="nav-link px-2 py-1 link-dark">Account</NavLink>
-                                </li>
+                                {authState === AuthState.Authenticated && (
+                                    <li className="nav-item">
+                                        <NavLink to="home" className="nav-link px-2 py-1 link-dark">Home</NavLink>
+                                    </li>
+                                )}
+                                {authState === AuthState.Authenticated && (
+                                    <li className="nav-item">
+                                        <NavLink to="reviews" className="nav-link px-2 py-1 link-dark">Reviews</NavLink>
+                                    </li>
+                                )}
+                                {authState === AuthState.Authenticated && (
+                                    <li className="nav-item">
+                                        <NavLink to="account" className="nav-link px-2 py-1 link-dark">Account</NavLink>
+                                    </li>
+                                )}
+
                             </menu>
                         </nav>
                     </header>
                 </div>
                 
                 <Routes>
-                    <Route path="/" element={<Login />} exact />
+                    <Route path="/" element={<Login 
+                                                userName={userName}
+                                                authState={authState}
+                                                onAuthChange={(userName, authState) => {
+                                                    setAuthState(authState);
+                                                    setUserName(userName);
+                                                }}
+                                            />} exact />
                     <Route path="/home" element={<Home />} />
                     <Route path='/reviews' element={<Reviews />} />
                     <Route path='/account' element={<Account />} />
