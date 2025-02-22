@@ -9,11 +9,13 @@ import {Home} from "./home/home";
 import {Reviews} from "./reviews/reviews";
 import {Account} from "./account/account";
 import {AuthState} from "./login/authState";
+import {updateAverageScore} from "./home/updateAverageScore";
 
 export default function App() {
     const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
     const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
     const [authState, setAuthState] = React.useState(currentAuthState);
+    const [averageScore, setAverageScore] = React.useState(0);
 
     return ( 
         <BrowserRouter>
@@ -56,7 +58,12 @@ export default function App() {
                                                     setUserName(userName);
                                                 }}
                                             />} exact />
-                    <Route path="/home" element={<Home />} />
+                    <Route path="/home" element={<Home 
+                                                    average={averageScore} 
+                                                    updateScore={() => {
+                                                        setAverageScore(updateAverageScore());
+                                                    }} 
+                                                />} />
                     <Route path='/reviews' element={<Reviews />} />
                     <Route path='/account' element={<Account />} />
                     <Route path="*" element={<NotFound />} />

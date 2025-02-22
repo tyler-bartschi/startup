@@ -1,15 +1,31 @@
 import React from 'react';
 import "./home.css";
 
-export function Home() {
+export function Home({average, updateScore}) {
+    const [quote, setQuote] = React.useState("...loading");
+    const [quoteAuthor, setQuoteAuthor] = React.useState('ur mom');
+
+    // sets the quote on load
+    React.useEffect(() => {
+        setQuote("Tell them hi for me. Please.");
+        setQuoteAuthor("Zachary Huckins");
+    }, []);
+
+    // sets an interval to repeated attempt to update the score
+    React.useEffect(() => {
+        const interval = setInterval(() => {updateScore}, 2000);
+        
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <main className="container-fluid">
 
             <div className="quote-wrapper">
                 <div className="quote-of-the-day">
                     <h4 class="h4-home">Quote of the Day</h4>
-                    <span className="quote">Tell them hi for me. Please.</span>
-                    <span className="quote-author">-Zachary Huckins</span>
+                    <span className="quote">{quote}</span>
+                    <span className="quote-author">- {quoteAuthor}</span>
                 </div>
             </div>
 
