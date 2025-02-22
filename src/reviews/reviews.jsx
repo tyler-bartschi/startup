@@ -7,17 +7,13 @@ export function Reviews({userName, average, updateScore}) {
     const [scoreTable, updateScoreTable] = React.useState(<ScoreTable />);
     const [reviewScore, setReviewScore] = React.useState("");
     const [userReview, setUserReview] = React.useState("");
-    const [revs, setReviews] = React.useState([]);
+    const [revs, setReviews] = React.useState(JSON.parse(localStorage.getItem('scores')) || []);
 
     // maybe change this to whenever the list of reviews updates
     React.useEffect(() => {
-        const interval = setInterval(() => {
-            updateScore();
             updateScoreTable(<ScoreTable />);
-        }, 5000);
-
-        return () => clearInterval(interval);
-    }, []);
+            updateScore(revs);
+    }, [revs]);
     
     // functions to check if the score entered is valid, and display a visual indication if it is not
     function check_score(e) {
@@ -35,12 +31,14 @@ export function Reviews({userName, average, updateScore}) {
         e.target.classList.remove('flash-red');
     }
 
-    function updateReviews(reviewScore, userReview, userName) {
-        console.log('function called');
+    async function updateReviews(reviewScore, userReview, userName) {
         let cur_score = new Score(userName, userReview, reviewScore);
-        setReviews(prevValue => [ cur_score, ...prevValue ]);
-        console.log(revs);
+        setReviews(prevValue => [cur_score, ...prevValue]);
     }
+
+    React.useEffect(() => {
+        localStorage.setItem('scores', JSON.stringify(revs));
+    }, [revs]);
 
     return (
         <main className="container-fluid">

@@ -1,14 +1,14 @@
 import React from 'react';
 
 export function ScoreTable() {
-    const [scores, setScores] = React.useState([]);
     const scoreRows = [];
 
     const scoresText = localStorage.getItem('scores');
 
     if (scoresText) {
         let raw_scores = JSON.parse(scoresText);
-        setScores(countScores());
+        console.log("scoreTable: ", raw_scores);
+        let scores = countScores(raw_scores);
         for (let i = 5; i > 0; i--) {
             scoreRows.push(
                 <tr key={i}>
@@ -37,7 +37,7 @@ export function ScoreTable() {
         
     );
 
-    function countScores() {
+    function countScores(raw_scores) {
         let counted_scores = [];
         for (let i = 1; i < 6; i++) {
             let count = 0;

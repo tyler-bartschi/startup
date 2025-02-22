@@ -1,17 +1,9 @@
-export function updateAverageScore() {
-    const scoresText = localStorage.getItem('scores');
-
-    if (scoresText) {
-        let scores = JSON.parse(scoresText);
-        return calculateScore();
-    } else {
-        return 0;
-    }
-
-    async function calculateScore() {
+export function updateAverageScore(revs=[]) {
+    if (revs) {
+        let scores = revs;
         let total = 0;
         scores.forEach((i) => total += parseInt(i.score, 10));
-        return Math.round(total / scores.length());
+        let avg = total / scores.length;
+        return avg.toFixed(1) || 0;
     }
-
 }

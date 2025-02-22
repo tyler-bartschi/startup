@@ -60,15 +60,15 @@ export default function App() {
                                             />} exact />
                     <Route path="/home" element={<Home 
                                                     average={averageScore} 
-                                                    updateScore={() => {
-                                                        setAverageScore(updateAverageScore());
+                                                    updateScore={(revs) => {
+                                                        setAverageScore(updateAverageScore(revs));
                                                     }} 
                                                 />} />
                     <Route path='/reviews' element={<Reviews 
                                                         userName={userName}
                                                         average={averageScore}
-                                                        updateScore={() => {
-                                                            setAverageScore(updateAverageScore());
+                                                        updateScore={(revs) => {
+                                                            setAverageScore(updateAverageScore(revs));
                                                         }}
                                                     />} />
                     <Route path='/account' element={<Account />} />
