@@ -3,6 +3,7 @@ import "./review.css";
 import {ScoreTable} from './scoreTable';
 import {Score} from './scoreModifier';
 import {OtherReviews} from "./otherReviews";
+import {leaveReview} from "./leaveReview";
 
 export function Reviews({userName, average, updateScore}) {
     const [scoreTable, updateScoreTable] = React.useState(<ScoreTable />);
@@ -11,6 +12,16 @@ export function Reviews({userName, average, updateScore}) {
     const [userReview, setUserReview] = React.useState("");
     const [revs, setReviews] = React.useState(JSON.parse(localStorage.getItem('scores')) || []);
     
+    React.useEffect(() => {
+            const review_interval = setInterval(() => {
+                let review_arr = leaveReview();
+                console.log(review_arr);
+                updateReviews(review_arr[0], review_arr[1], review_arr[2], false);
+            }, 8000);
+
+            return () => clearInterval(review_interval);
+        },[]);
+
     React.useEffect(() => {
             localStorage.setItem('scores', JSON.stringify(revs));
             updateScoreTable(<ScoreTable />);
@@ -34,12 +45,15 @@ export function Reviews({userName, average, updateScore}) {
         e.target.classList.remove('flash-red');
     }
 
-    async function updateReviews(reviewScore, userReview, userName) {
+    async function updateReviews(reviewScore, userReview, userName, fromUser=true) {
         let cur_score = new Score(userName, userReview, reviewScore);
         setReviews(prevValue => [cur_score, ...prevValue]);
-        setReviewScore("");
-        setUserReview("");
+        if (fromUser){
+            setReviewScore("");
+            setUserReview("");
+        }
     }
+
 
     return (
         <main className="container-fluid">
