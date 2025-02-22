@@ -23,20 +23,16 @@ export function Account() {
             <div className="change-wrapper">
                 {/* use services to change the email or password to a new email or password */}
                 <h3 className="h3-account">Change Email or Password</h3>
-                <form>
-                    <div className="input-group mb-2">
-                        <label className="input-group-text" for="change-email">Username: </label>
-                        <input className="form-control" type="text" placeholder="new username" />
-                    </div>
-                </form>
+                <div className="input-group mb-2">
+                    <label className="input-group-text">Username: </label>
+                    <input className="form-control" type="text" placeholder="new username" />
+                </div>
                 <button type="submit" className="change-button">Change Username</button>
 
-                <form>
-                    <div className="input-group mb-2">
-                        <label className="input-group-text" for="change-password">Password: </label>
-                        <input className="form-control" type="password" placeholder="new password"/>
-                    </div>
-                </form>
+                <div className="input-group mb-2">
+                    <label className="input-group-text">Password: </label>
+                    <input className="form-control" type="password" placeholder="new password"/>
+                </div>
                 <button type="submit" className="change-button">Change Password</button>
             </div>
             

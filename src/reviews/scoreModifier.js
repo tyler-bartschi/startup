@@ -7,3 +7,13 @@ export class Score {
         this.score = score;
     }
 }
+
+// class ScoreModifier {
+//     scores = [];
+//     constructor() {
+//         this.test = "hello";
+//     }
+// }
+
+// const scoreModifier = new ScoreModifier();
+// export {scoreModifier};

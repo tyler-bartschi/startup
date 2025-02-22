@@ -5,7 +5,6 @@ export function ScoreTable() {
     const scoreRows = [];
 
     const scoresText = localStorage.getItem('scores');
-    
 
     if (scoresText) {
         let raw_scores = JSON.parse(scoresText);
@@ -31,7 +30,9 @@ export function ScoreTable() {
 
     return (
         <table className="data-table">
-            {scoreRows}
+            <tbody>
+                {scoreRows}
+            </tbody>
         </table>
         
     );
@@ -49,5 +50,4 @@ export function ScoreTable() {
         }
         return counted_scores;
     }
-
 }

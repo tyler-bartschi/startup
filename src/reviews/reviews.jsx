@@ -1,11 +1,13 @@
 import React from 'react';
 import "./review.css";
 import {ScoreTable} from './scoreTable';
+import {Score} from './scoreModifier';
 
 export function Reviews({userName, average, updateScore}) {
     const [scoreTable, updateScoreTable] = React.useState(<ScoreTable />);
     const [reviewScore, setReviewScore] = React.useState("");
     const [userReview, setUserReview] = React.useState("");
+    const [revs, setReviews] = React.useState([]);
 
     // maybe change this to whenever the list of reviews updates
     React.useEffect(() => {
@@ -16,7 +18,8 @@ export function Reviews({userName, average, updateScore}) {
 
         return () => clearInterval(interval);
     }, []);
-
+    
+    // functions to check if the score entered is valid, and display a visual indication if it is not
     function check_score(e) {
         if (e.target.value >= 0 && e.target.value <= 5) {
             setReviewScore(e.target.value);
@@ -30,6 +33,13 @@ export function Reviews({userName, average, updateScore}) {
     async function removeEffect(e) {
         e.target.classList.remove('shake');
         e.target.classList.remove('flash-red');
+    }
+
+    function updateReviews(reviewScore, userReview, userName) {
+        console.log('function called');
+        let cur_score = new Score(userName, userReview, reviewScore);
+        setReviews(prevValue => [ cur_score, ...prevValue ]);
+        console.log(revs);
     }
 
     return (
@@ -62,26 +72,25 @@ export function Reviews({userName, average, updateScore}) {
                 <p>One of them may redeem us. One of them will destory us.</p>
             </div>
 
-            <h3 class="h3-review">Reviews</h3>
+            <h3 className="h3-review">Reviews</h3>
             <div className="review-box">
-                <form>
-                    <div className="score-box">
-                        <label className="selection-header" for="rating-select">Overall Score</label>
-                        <input className="text rating-select" value={reviewScore} onChange={(e) => check_score(e)} placeholder="5"></input>
-                        <span>/ 5</span>
-                    </div>
-                    <div>
-                        <textarea className="form-control review-text" value={userReview} onChange={(e) => setUserReview(e.target.value)} placeholder="Your Review Here"></textarea>
-                    </div>
-                    <div className="username">
-                        <span>- {userName}</span>
-                    </div>
-                    <div>
-                        {/* when submitting, check if the review score is 0. if it is, reject */}
-                        <button className="review-submit" type="submit" disabled={!reviewScore || !userReview}>Submit Review</button>
-                    </div>
-                </form>
+                <div className="score-box">
+                    <span className="selection-header">Overall Score</span>
+                    <input id="rating" className="text rating-select" value={reviewScore} onChange={(e) => check_score(e)} placeholder="5"></input>
+                    <span>/ 5</span>
+                </div>
+                <div>
+                    <textarea id="text-reveiw" className="form-control review-text" value={userReview} onChange={(e) => setUserReview(e.target.value)} placeholder="Your Review Here"></textarea>
+                </div>
+                <div className="username">
+                    <span>- {userName}</span>
+                </div>
+                <div>
+                    {/* when submitting, check if the review score is 0. if it is, reject */}
+                    <button className="review-submit" type="submit" onClick={() => updateReviews(reviewScore, userReview, userName)} disabled={!reviewScore || !userReview}>Submit Review</button>
+                </div>
             </div>
+
             {/* This will use database data to render past comments */}
             {/* it might also use WebSocket so new comments are rendered in real time */}
 
@@ -120,9 +129,9 @@ export function Reviews({userName, average, updateScore}) {
                                 <span className="review-user">- Placeholder</span>
                             </div>
                         </div>
-                        </div>
                     </div>
                 </div>
+            </div>
         </main>
     );
 }

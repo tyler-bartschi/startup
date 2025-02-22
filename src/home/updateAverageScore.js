@@ -1,9 +1,8 @@
 export function updateAverageScore() {
-    const [scores, setScores] = React.useState([]);
     const scoresText = localStorage.getItem('scores');
 
     if (scoresText) {
-        setScores(JSON.parse(scoresText));
+        let scores = JSON.parse(scoresText);
         return calculateScore();
     } else {
         return 0;
