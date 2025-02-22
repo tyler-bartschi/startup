@@ -76,7 +76,7 @@ export function Reviews({userName, average, updateScore}) {
                         <span>- {userName}</span>
                     </div>
                     <div>
-                    <button className="review-submit" type="submit">Submit Review</button>
+                    <button className="review-submit" type="submit" disabled={!reviewScore || !userReview}>Submit Review</button>
                     </div>
                 </form>
             </div>

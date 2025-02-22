@@ -156,7 +156,7 @@
 }
 
 .review-submit {
-    border-color: gray;
+    border-color: rgb(31, 170, 26);
     border-radius: 0.25em;
     background-color: rgb(31, 170, 26);
     color: rgb(255, 253, 253);
@@ -191,4 +191,9 @@
 
 .flash-red {
     background-color: red;
+}
+
+.review-submit:disabled{
+    border-color: rgb(122, 121, 121);
+    background-color: rgb(122, 121, 121);
 }
