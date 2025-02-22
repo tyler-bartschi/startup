@@ -4,6 +4,8 @@ import {ScoreTable} from './scoreTable';
 
 export function Reviews({userName, average, updateScore}) {
     const [scoreTable, updateScoreTable] = React.useState(<ScoreTable />);
+    const [reviewScore, setReviewScore] = React.useState("");
+    const [userReview, setUserReview] = React.useState("");
 
     React.useEffect(() => {
         const interval = setInterval(() => {
@@ -49,11 +51,11 @@ export function Reviews({userName, average, updateScore}) {
                 <form>
                     <div className="score-box">
                         <label className="selection-header" for="rating-select">Overall Score</label>
-                        <input className="text rating-select"></input>
+                        <input className="text rating-select" value={reviewScore} onChange={(e) => setReviewScore(e.target.value)} placeholder="5"></input>
                         <span>/ 5</span>
                     </div>
                     <div>
-                        <textarea className="form-control review-text" name="user-review" placeholder="Your Review Here"></textarea>
+                        <textarea className="form-control review-text" value={userReview} onChange={(e) => setUserReview(e.target.value)} placeholder="Your Review Here"></textarea>
                     </div>
                     <div className="username">
                         <span>- {userName}</span>
