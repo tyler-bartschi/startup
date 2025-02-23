@@ -30,9 +30,3 @@ export function UserComments(){
         </div>
     );
 }
-
-<div className="comment">
-                    <p className="book-title">The Way of Kings</p>
-                    <p className="star">★★★★★</p>
-                    <p className="comment-text">--user's comment goes here--</p>
-                </div>

@@ -1,8 +1,12 @@
 import React from 'react';
 import "./account.css";
 import {UserComments} from './userComments';
+import {useNavigate} from 'react-router-dom';
 
 export function Account({userName}) {
+    const navigate = useNavigate();
+
+
     return (
         <main className="main-account">
             <h2 className="h2-account">Account Overview</h2>
@@ -34,7 +38,7 @@ export function Account({userName}) {
             </div>
             
             <div>
-                <button className="logout" type="submit">Logout</button>
+                <button className="logout" type="submit" onClick={() => navigate('/')}>Return to login</button>
             </div>
         </main>
     );
