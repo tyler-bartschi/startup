@@ -1,5 +1,6 @@
 import React from 'react';
 import "./account.css";
+import {UserComments} from './userComments';
 
 export function Account({userName}) {
     return (
@@ -13,11 +14,7 @@ export function Account({userName}) {
             <div className="past-comments">
                 <h4 className="h4-account" >Your Comments</h4>
                 {/* this will pull data from the database to display your past comments */}
-                <div className="comment">
-                    <p className="book-title">The Way of Kings</p>
-                    <p className="star">★★★★★</p>
-                    <p className="comment-text">--user's comment goes here--</p>
-                </div>
+                <UserComments />
             </div>
 
             <div className="change-wrapper">
