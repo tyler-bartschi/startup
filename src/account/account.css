@@ -17,7 +17,10 @@
 }
 
 .username {
-    font-style: italic;
+    /* font-style: italic; */
+    font-weight: bold;
+    font-size: 1.2em;
+    color: rgb(12, 49, 173);
 }
 
 .sidebar {
