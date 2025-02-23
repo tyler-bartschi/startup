@@ -1,14 +1,14 @@
 import React from 'react';
 import "./account.css";
 
-export function Account() {
+export function Account({userName}) {
     return (
         <main className="main-account">
             <h2 className="h2-account">Account Overview</h2>
             <div className="username-wrapper">
                 <div className="sidebar"></div>
                 {/* this will pull data from the database to display your username */}
-                <span className="username">--username--</span>
+                <span className="username">{userName}</span>
             </div>
             <div className="past-comments">
                 <h4 className="h4-account" >Your Comments</h4>

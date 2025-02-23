@@ -71,7 +71,9 @@ export default function App() {
                                                             setAverageScore(updateAverageScore(revs));
                                                         }}
                                                     />} />
-                    <Route path='/account' element={<Account />} />
+                    <Route path='/account' element={<Account 
+                                                        userName={userName}
+                                                    />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
 
