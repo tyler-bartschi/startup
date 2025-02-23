@@ -115,7 +115,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **Hooks** - I made extensive use of `useState` hooks to update and render state variables, and I also made extensive use of `useEffect` hooks to automatically update average scores and the table of total scores (eventually to be replaced with WebSocket data), and to simulate WebSocket data by randomly generating a review every 8 seconds.
 
 ## 🚀 Service deliverable
 
