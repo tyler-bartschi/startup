@@ -1,5 +1,4 @@
 .book-wrapper {
-    /* flex: 0 200px; */
     display: flex;
     flex-direction: row;
     columns: 3;
@@ -131,7 +130,6 @@
 
 .review-box {
     margin-top: 1em;
-    /* border: thin gray solid; */
     padding: 0.5em;
     border-radius: 0.25em;
     margin-bottom: 1em;

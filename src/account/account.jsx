@@ -21,14 +21,14 @@ export function Account(props) {
                 <UserComments />
             </div>
 
+            <h3 className="h3-account">Change Email or Password</h3>
             <div className="change-wrapper">
                 {/* use services to change the email or password to a new email or password */}
-                <h3 className="h3-account">Change Email or Password</h3>
                 <div className="input-group mb-2">
                     <label className="input-group-text">Username: </label>
                     <input className="form-control" type="text" value={newUserName} onChange={(e) => setNewUserName(e.target.value)} placeholder="new username" />
                 </div>
-                <button type="submit" className="change-button" onClick={() => {props.onUserChange(newUserName); setNewUserName("");}} >Change Username</button>
+                <button type="submit" className="change-button" onClick={() => {props.onUserChange(newUserName); setNewUserName("");}} disabled={!newUserName} >Change Username</button>
 
                 <div className="input-group mb-2">
                     <label className="input-group-text">Password: </label>

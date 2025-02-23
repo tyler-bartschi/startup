@@ -17,7 +17,6 @@
 }
 
 .account-username {
-    /* font-style: italic; */
     font-weight: bold;
     font-size: 1.2em;
     color: rgb(12, 49, 173);
@@ -36,6 +35,7 @@
 
 .h4-account {
     font-weight: bold !important;
+    padding-top: 0.5em;
 }
 
 .star {
