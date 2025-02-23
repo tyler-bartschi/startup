@@ -11,7 +11,9 @@ export function Reviews({userName, average, updateScore}) {
     const [reviewScore, setReviewScore] = React.useState("");
     const [userReview, setUserReview] = React.useState("");
     const [revs, setReviews] = React.useState(JSON.parse(localStorage.getItem('scores')) || []);
+    const [userRevs, setUserRevs] = React.useState(JSON.parse(localStorage.getItem('userScores')) || []);
     
+    // simulates the WebSocket data, every 8 seconds it adds a review
     React.useEffect(() => {
             const review_interval = setInterval(() => {
                 let review_arr = leaveReview();
@@ -28,6 +30,10 @@ export function Reviews({userName, average, updateScore}) {
             updateScore(revs);
             setOtherReviews(<OtherReviews />);
     }, [revs]);
+
+    React.useEffect(() => {
+        localStorage.setItem('userScores', JSON.stringify(userRevs))
+    }, [userRevs]);
 
     // functions to check if the score entered is valid, and display a visual indication if it is not
     function check_score(e) {
@@ -51,6 +57,7 @@ export function Reviews({userName, average, updateScore}) {
         if (fromUser){
             setReviewScore("");
             setUserReview("");
+            setUserRevs(prevValue => [cur_score, ...prevValue]);
         }
     }
 
