@@ -16,7 +16,7 @@
     align-items: center;
 }
 
-.username {
+.account-username {
     /* font-style: italic; */
     font-weight: bold;
     font-size: 1.2em;
@@ -91,4 +91,8 @@
 
 .logout:hover {
     background-color: rgb(6, 31, 110);
+}
+
+.change-button:disabled {
+    background-color: rgb(142, 142, 153);
 }

@@ -73,6 +73,9 @@ export default function App() {
                                                     />} />
                     <Route path='/account' element={<Account 
                                                         userName={userName}
+                                                        onUserChange={(userName) => {
+                                                            setUserName(userName);
+                                                        }}
                                                     />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
