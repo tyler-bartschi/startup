@@ -303,3 +303,35 @@ console.log(b, c, others);
 - If request method is unspecificed, it defaults to GET
 - To do a POST request, populate options prameter with HTTP method and headers
 
+### Service Design
+
+- A web service is divided into endpoints, and each endpoint provides a single functional purpose
+- Service endpoints often called API (Application Programming Interface)
+- When updating endpoints, clients will ignore anyhthing they don't understnad. So, keep old stuff in for the older clients, and add new stuff so clients taht know how to use the new stuff can
+- There should only be one way to act on a resource, and endopoints should only do one thing
+- Remote Procedure Calls (RPC) expose service endpoints as simple function calls, usually leverages the POST HTTP verb
+- Representational State Transfer (REST) verbs always act upon a resource. Operations on a resource impact the state of the resource, allows for caching functionality.
+- GraphQL allows you to ask for a bunch of different information, the server joins that information into one JSON response, and filters out anything unwanted
+
+### Express
+
+- Express revolves around creating and using HTTP routing and middleware functions
+- Express constructor:
+  `const express = require('express');`
+  `const app = express();`
+  `app.listen(8080);`
+
+- app object allows HTTP routing and middleware functions
+- app.get() takes two parameters - URL path matching pattern, and a callback function that is invoked when the pattern matches
+- Callback function has 3 parameters: req, the HTTP request object; res, the HTTP response object; and next, the routing function that Experss expects to be called if this routing function wants another function to generate a response
+- Middleware represents componentized pieces of functionality
+- Mediator loads the middleware components and determines order of execution
+- Express is the medator, middleware functions are the middleware components
+  `function middlewareName(req, res, next)`
+- req = HTTP request object, res = HTTP response object, next = next middleware function to pass processing to. Call next funciton after completeing processing so the next middleware function executes
+- Also has built in middlware functions like `static`, and you can install thrid party middlware with NPM
+- the `require` function includes a package in the JavaScript
+- Middleware can also do error handling, and error handling middleware take an additional `err` parameter
+- app.use() applies the parameter (which is a middlware function) to every request
+- Middleware executes as functions down the lines of code
+- 
