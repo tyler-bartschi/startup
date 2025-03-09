@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {ErrorDialog} from './errorDialog';
+
 
 export function Unauthenticated(props){
     const [userName, setUserName] = React.useState(props.userName);
@@ -7,8 +9,30 @@ export function Unauthenticated(props){
     const [displayError, setDisplayError] = React.useState(null);
     
     async function loginUser() {
-        localStorage.setItem('userName', userName);
-        props.onLogin(userName);
+        login('/api/auth/login');
+    }
+
+    async function createUser() {
+        login('/api/auth/create');
+    }
+
+    async function login(endpoint) {
+        const response = await fetch(endpoint, {
+            method: 'post',
+            body: JSON.stringify({username: userName, password: password}),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
+        if (response?.status === 200) {
+            localStorage.setItem('userName', userName);
+            props.onLogin(userName);
+        } else {
+            const body = await response.json();
+            setUserName('');
+            setPassword('');
+            setDisplayError(`Error: ${body.msg}`);
+        }
     }
 
     return (
@@ -26,11 +50,11 @@ export function Unauthenticated(props){
                     </div>
                     <div className="btn-wrapper">
                         <button type="submit" className="btn" onClick={() => loginUser()} disabled={!userName || !password} >Login</button>
-                        <button type="submit" className="btn create-btn" onClick={() => loginUser()} disabled={!userName || !password}>Create</button>
+                        <button type="submit" className="btn create-btn" onClick={() => createUser()} disabled={!userName || !password}>Create</button>
                     </div>
                 </div>
             </div>
-            <errorDialog message={displayError} onHide={() => setDisplayError(null)} />
+            <ErrorDialog message={displayError} onHide={() => setDisplayError(null)} />
         </div>
     );
 }
