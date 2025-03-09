@@ -334,4 +334,23 @@ console.log(b, c, others);
 - Middleware can also do error handling, and error handling middleware take an additional `err` parameter
 - app.use() applies the parameter (which is a middlware function) to every request
 - Middleware executes as functions down the lines of code
+
+### Modules
+
+- Node.js modules are called CommonJS modules, and JavaScript modules are called ES modules
+- To import with CommonJS: `const X = require('y');`
+- must use `modules.exports` global variable to export something from your own code
+
+### SOP and CORS
+
+- Same Origin Policy (SOP) - JavaScript can only make requests to a domain if it is in the same domain that the user is currently viewing
+- Cross Origin Resource Sharing (CORS) - allows client (browser) to specify the origin of a request, then let the server repsond with what origins are allowed
+- Make sure 3rd party APIs either allow your origin or the wildcard (*) in the access-control-allow-origin, or your browser's CORS will block it
+
+### Authorization Services
+
+- When a user is authenticated, give them a cookie that stores teh authentication token
+- Tokens are used to give different roles, and thereby to limit access to different features
+- `bcrpytjs` for encrypting user passwords
+- `uuid` to generate random authentication token
 - 
