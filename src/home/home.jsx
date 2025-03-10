@@ -11,7 +11,19 @@ export function Home({average, updateScore}) {
     React.useEffect(() => {
         setQuote("Tell them hi for me. Please.");
         setQuoteAuthor("Zachary Huckins");
+        
+        getQuote();
+
     }, []);
+
+    async function getQuote() {
+        const response = await fetch("https://quote.cs260.click");
+        const stringified = await response.json();
+        // console.log(stringified.author);
+        // console.log(stringified.quote);
+        setQuote(stringified.quote);
+        setQuoteAuthor(stringified.author);
+    }
 
     // sets an interval to repeatedly attempt to update the score
     React.useEffect(() => {
@@ -26,7 +38,7 @@ export function Home({average, updateScore}) {
 
             <div className="quote-wrapper">
                 <div className="quote-of-the-day">
-                    <h4 class="h4-home">Quote of the Day</h4>
+                    <h4 className="h4-home">Quote of the Day</h4>
                     <span className="quote">{quote}</span>
                     <span className="quote-author">- {quoteAuthor}</span>
                 </div>

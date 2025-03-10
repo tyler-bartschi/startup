@@ -4,6 +4,8 @@
     flex-direction: column;
     justify-items: center;
     align-items: center;
+    width: 75vh;
+    justify-self: center;
 }
 
 .quote-of-the-day {
