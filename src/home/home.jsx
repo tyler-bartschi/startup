@@ -4,26 +4,19 @@ import {useNavigate} from 'react-router-dom';
 
 export function Home({average, updateScore}) {
     const navigate = useNavigate();
-    const [quote, setQuote] = React.useState("...loading");
-    const [quoteAuthor, setQuoteAuthor] = React.useState('ur mom');
+    const [quote, setQuote] = React.useState("Tell them hi for me. Please.");
+    const [quoteAuthor, setQuoteAuthor] = React.useState('Zachary Huckins');
 
     // sets the quote on load
     React.useEffect(() => {
-        setQuote("Tell them hi for me. Please.");
-        setQuoteAuthor("Zachary Huckins");
-        
-        getQuote();
-
+        fetch("https://quote.cs260.click")
+          .then((response) => response.json())
+          .then((data) => {
+            setQuote(data.quote);
+            setQuoteAuthor(data.author);
+          })
+          .catch();
     }, []);
-
-    async function getQuote() {
-        const response = await fetch("https://quote.cs260.click");
-        const stringified = await response.json();
-        // console.log(stringified.author);
-        // console.log(stringified.quote);
-        setQuote(stringified.quote);
-        setQuoteAuthor(stringified.author);
-    }
 
     // sets an interval to repeatedly attempt to update the score
     React.useEffect(() => {
