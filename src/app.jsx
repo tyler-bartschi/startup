@@ -75,7 +75,6 @@ export default function App() {
                                                         userName={userName}
                                                         onUserChange={(userName) => {
                                                             setUserName(userName);
-                                                            localStorage.setItem("userName", userName);
                                                         }}
                                                     />} />
                     <Route path="*" element={<NotFound />} />

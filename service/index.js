@@ -76,12 +76,22 @@ const verifyAuth = async (req, res, next) => {
     }
 };
 
-apiRouter.put('auth/changeUser', verifyAuth, async (req, res) => {
-
+apiRouter.put('/auth/changeUser', verifyAuth, async (req, res) => {
+    const result = await updateUser(req.body.field, req.body.value, req);
+    if (result) {
+        res.send({username: req.body.value});
+    } else {
+        res.status(401).send({msg: 'Process failed'});
+    }
 });
 
-apiRouter.put('auth/changePass', verifyAuth, async (req, res) => {
-
+apiRouter.put('/auth/changePass', verifyAuth, async (req, res) => {
+    const result = await updateUser(req.body.field, req.body.value, req);
+    if (result) {
+        res.send({msg: "Success"});
+    } else {
+        res.status(401).send({msg: 'Process failed'});
+    }
 });
 
 apiRouter.get('/reviews', verifyAuth, (_req, res) => {
@@ -115,14 +125,14 @@ async function createUser(username, password) {
     return user;
 }
 
-async function updateUser(field, value) {
-    const user = await findUser(field, value);
+async function updateUser(field, value, req) {
+    const user = await findUser('token', req.cookies[authCookieName]);
 
     if (field === "username") {
         user.username = value;
         return true;
     } else if (field === "password") {
-        const passwordHash = await bcrypt.hash(password, 10);
+        const passwordHash = await bcrypt.hash(value, 10);
         user.password = passwordHash;
         return true;
     }
@@ -134,8 +144,6 @@ async function findUser(field, value) {
 
     return users.find((u) => u[field] === value);
 }
-
-
 
 function setAuthCookie(res, authToken) {
     res.cookie(authCookieName, authToken, {
