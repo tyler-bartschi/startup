@@ -52,29 +52,23 @@ export function Account(props) {
                 setNewPassword("");
             }
         }
-
-
     }
 
-    // {props.onUserChange(newUserName); setNewUserName("");}
 
     return (
         <main className="main-account">
             <h2 className="h2-account">Account Overview</h2>
             <div className="username-wrapper">
                 <div className="sidebar"></div>
-                {/* this will pull data from the database to display your username */}
                 <span className="account-username">{props.userName}</span>
             </div>
             <div className="past-comments">
                 <h4 className="h4-account" >Your Comments</h4>
-                {/* this will pull data from the database to display your past comments */}
                 <UserComments />
             </div>
 
             <h3 className="h3-account">Change Email or Password</h3>
             <div className="change-wrapper">
-                {/* use services to change the email or password to a new email or password */}
                 <div className="input-group mb-2">
                     <label className="input-group-text">Username: </label>
                     <input className="form-control" type="text" value={newUserName} onChange={(e) => setNewUserName(e.target.value)} placeholder="new username" />
