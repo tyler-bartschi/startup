@@ -5,11 +5,21 @@ export function Authenticated(props){
     const navigate = useNavigate();
 
     async function logout() {
-        localStorage.removeItem('userName');
+        // localStorage.removeItem('userName');
         // for now, remove all the scores upon logout
-        localStorage.removeItem('scores');
-        localStorage.removeItem('userScores');
-        props.onLogout()
+        // localStorage.removeItem('scores');
+        // localStorage.removeItem('userScores');
+        // props.onLogout()
+        fetch('/api/auth/logout', {
+            method: 'delete',
+        })
+          .catch(() =>{})
+          .finally(() => {
+            localStorage.removeItem('userName');
+            localStorage.removeItem('scores');
+            localStorage.removeItem('userScores');
+            props.onLogout();
+          });
     }
 
     return (
