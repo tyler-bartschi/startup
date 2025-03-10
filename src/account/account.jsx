@@ -54,7 +54,6 @@ export function Account(props) {
         }
     }
 
-
     return (
         <main className="main-account">
             <h2 className="h2-account">Account Overview</h2>
