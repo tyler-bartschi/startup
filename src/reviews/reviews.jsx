@@ -10,14 +10,13 @@ export function Reviews({userName, average, updateScore}) {
     const [otherRevs, setOtherReviews] = React.useState(<OtherReviews />);
     const [reviewScore, setReviewScore] = React.useState("");
     const [userReview, setUserReview] = React.useState("");
-    const [revs, setReviews] = React.useState(JSON.parse(localStorage.getItem('scores')) || []);
-    const [userRevs, setUserRevs] = React.useState(JSON.parse(localStorage.getItem('userScores')) || []);
+    const [revs, setReviews] = React.useState([]);
+    const [userRevs, setUserRevs] = React.useState([]);
     
     // simulates the WebSocket data, every 8 seconds it adds a review
     React.useEffect(() => {
             const review_interval = setInterval(() => {
                 let review_arr = leaveReview();
-                console.log(review_arr);
                 updateReviews(review_arr[0], review_arr[1], review_arr[2], false);
             }, 8000);
 
@@ -25,15 +24,27 @@ export function Reviews({userName, average, updateScore}) {
         },[]);
 
     React.useEffect(() => {
-            localStorage.setItem('scores', JSON.stringify(revs));
-            updateScoreTable(<ScoreTable />);
-            updateScore(revs);
-            setOtherReviews(<OtherReviews />);
+            fetch('/api/reviews')
+                .then((response) => response.json())
+                .then((data) => {
+                    // review_data = data.reviews;
+                    // review_test = data.test;
+                    // console.log(review_test);
+                    // console.log(review_data);
+                    // console.log(test);
+                    updateScoreTable(ScoreTable(data));
+                    updateScore(revs);
+                    setOtherReviews(OtherReviews(data));
+                });
+            // localStorage.setItem('scores', JSON.stringify(revs));
+            // updateScoreTable(<ScoreTable />);
+            // updateScore(revs);
+            // setOtherReviews(<OtherReviews />);
     }, [revs]);
 
-    React.useEffect(() => {
-        localStorage.setItem('userScores', JSON.stringify(userRevs))
-    }, [userRevs]);
+    // React.useEffect(() => {
+    //     localStorage.setItem('userScores', JSON.stringify(userRevs))
+    // }, [userRevs]);
 
     // functions to check if the score entered is valid, and display a visual indication if it is not
     function check_score(e) {
@@ -53,11 +64,23 @@ export function Reviews({userName, average, updateScore}) {
 
     async function updateReviews(reviewScore, userReview, userName, fromUser=true) {
         let cur_score = new Score(userName, userReview, reviewScore);
+        // add post fetch
         setReviews(prevValue => [cur_score, ...prevValue]);
+        await fetch('/api/reviews', {
+            method: "PUT",
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({reviews: revs}),
+        });
         if (fromUser){
             setReviewScore("");
             setUserReview("");
             setUserRevs(prevValue => [cur_score, ...prevValue]);
+            // add post fetch
+            await fetch('/api/reviews/user', {
+                method: "PUT",
+                headers:  {'content-type': 'application/json'},
+                body: JSON.stringify({reviews: userRevs}),
+            });
         }
     }
 
@@ -77,7 +100,7 @@ export function Reviews({userName, average, updateScore}) {
                 </div>
                 <div className="rating-data-wrapper">
                     <div className="rating-data">
-                        <h4 class="h4-review" >Total Ratings</h4>
+                        <h4 className="h4-review" >Total Ratings</h4>
                         {scoreTable}
                         <p><b>Average Rating: </b><span className="rating-reviews">{average}</span> / 5</p>
                     </div>

@@ -8,6 +8,7 @@ const authCookieName = 'token';
 
 let users = [];
 let reviews = [];
+let user_reviews = [];
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -95,11 +96,30 @@ apiRouter.put('/auth/changePass', verifyAuth, async (req, res) => {
 });
 
 apiRouter.get('/reviews', verifyAuth, (_req, res) => {
-
+    if (reviews == []) {
+        res.send(JSON.stringify({reviews: "[]"}));
+    } else {
+        res.send(JSON.stringify({reviews: reviews}));
+    }
+    
 });
 
-apiRouter.post('/reviews', verifyAuth, (req, res) => {
+apiRouter.get('/reviews/user', verifyAuth, (_req, res) => {
+    if (user_reviews == []) {
+        res.send(JSON.stringify({reviews: "[]"}));
+    } else {
+        res.send(JSON.stringify({reviews: user_reviews}));
+    }
+});
 
+apiRouter.put('/reviews', verifyAuth, (req, res) => {
+    reviews = req.body.reviews;
+    res.send(reviews);
+});
+
+apiRouter.put('reviews/user', verifyAuth, (req, res) => {
+    user_reviews = req.body.reviews;
+    res.send(user_reviews);
 });
 
 // default error handling

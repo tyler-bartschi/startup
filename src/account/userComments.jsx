@@ -3,7 +3,9 @@ import React from 'react';
 export function UserComments(){
     const reviewRows = []
 
-    const reviewText = localStorage.getItem('userScores');
+    // const reviewText = localStorage.getItem('userScores');
+    const reviewText = fetch('/api/reviews/user')
+                        .then((resposne) => response.text());
 
     if (reviewText && reviewText != "null" && reviewText != "[]") {
         const reviews = JSON.parse(reviewText);

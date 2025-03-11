@@ -1,12 +1,15 @@
 import React from 'react';
 
-export function OtherReviews(props){
+export function OtherReviews(reviewText){
     const reviewRows = [];
 
-    const reviewText = localStorage.getItem('scores');
+    // const reviewText = localStorage.getItem('scores');
+    // const reviewText =  fetch("/api/reviews")
+    //                         .then((response) => response.text());
 
-    if (reviewText !== "[]" && reviewText !== null){
-        let review_arr = JSON.parse(reviewText);
+    if (JSON.stringify(reviewText) != "{}"){
+        // let review_arr = JSON.parse(reviewText);
+        let review_arr = reviewText.reviews;
         for (let i = 0; i < review_arr.length; i++) {
             let cur_review = review_arr[i];
             reviewRows.push(

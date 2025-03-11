@@ -1,12 +1,21 @@
 import React from 'react';
 
-export function ScoreTable() {
+export function ScoreTable(scoresText) {
     const scoreRows = [];
 
-    const scoresText = localStorage.getItem('scores');
-
-    if (scoresText) {
-        let raw_scores = JSON.parse(scoresText);
+    // const scoresText = localStorage.getItem('scores');
+    // const scoresText =  fetch("/api/reviews")
+    //                         .then((response) => response.text());
+    // console.log(JSON.stringify(scoresText));
+    // console.log(scoresText);
+    if (JSON.stringify(scoresText) != "{}") {
+        // console.log(JSON.stringify(scoresText) != "{}");
+        // let raw_scores = JSON.parse(scoresText);
+        // let raw_scores = scoresText.json();
+        // let raw_scores = scoresText;
+        let raw_scores = scoresText.reviews;
+        console.log(JSON.stringify(raw_scores));
+        // console.log("Reviews: ", raw_scores);
         let scores = countScores(raw_scores);
         for (let i = 5; i > 0; i--) {
             scoreRows.push(
