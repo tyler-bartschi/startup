@@ -14,7 +14,6 @@ export function ScoreTable(scoresText) {
         // let raw_scores = scoresText.json();
         // let raw_scores = scoresText;
         let raw_scores = scoresText.reviews;
-        console.log(JSON.stringify(raw_scores));
         // console.log("Reviews: ", raw_scores);
         let scores = countScores(raw_scores);
         for (let i = 5; i > 0; i--) {

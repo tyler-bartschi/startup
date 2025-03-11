@@ -1,21 +1,22 @@
 import React from 'react';
 
-export function UserComments(){
+export function UserComments(reviewText){
     const reviewRows = []
 
     // const reviewText = localStorage.getItem('userScores');
-    const reviewText = fetch('/api/reviews/user')
-                        .then((resposne) => response.text());
+    // const reviewText = fetch('/api/reviews/user')
+    //                     .then((response) => response.json());
 
-    if (reviewText && reviewText != "null" && reviewText != "[]") {
-        const reviews = JSON.parse(reviewText);
+    if (JSON.stringify(reviewText) != "{}") {
+        // console.log(reviewText);
+        // let reviews = reviewText;
         let count = 0;
-        for (const review of reviews) {
+        for (let i = 0; i < reviewText.length; i++) {
             reviewRows.push(
                 <div key={count} className="comment">
                     <p className="book-title">The Way of Kings</p>
-                    <p className="star">{"★".repeat(review.score)}</p>
-                    <p className="comment-text">{review.comment}</p>
+                    <p className="star">{"★".repeat(reviewText[i].score)}</p>
+                    <p className="comment-text">{reviewText[i].comment}</p>
                 </div>
             );
             count++;
@@ -32,3 +33,5 @@ export function UserComments(){
         </div>
     );
 }
+
+// reviewText && reviewText != "null" && reviewText != "[]"

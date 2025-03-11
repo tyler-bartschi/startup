@@ -33,7 +33,7 @@ export function Reviews({userName, average, updateScore}) {
                     // console.log(review_data);
                     // console.log(test);
                     updateScoreTable(ScoreTable(data));
-                    updateScore(revs);
+                    updateScore(data.reviews);
                     setOtherReviews(OtherReviews(data));
                 });
             // localStorage.setItem('scores', JSON.stringify(revs));
@@ -69,7 +69,7 @@ export function Reviews({userName, average, updateScore}) {
         await fetch('/api/reviews', {
             method: "PUT",
             headers: {'content-type': 'application/json'},
-            body: JSON.stringify({reviews: revs}),
+            body: JSON.stringify({review: cur_score}),
         });
         if (fromUser){
             setReviewScore("");
@@ -79,7 +79,7 @@ export function Reviews({userName, average, updateScore}) {
             await fetch('/api/reviews/user', {
                 method: "PUT",
                 headers:  {'content-type': 'application/json'},
-                body: JSON.stringify({reviews: userRevs}),
+                body: JSON.stringify({review: cur_score}),
             });
         }
     }

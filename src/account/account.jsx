@@ -9,6 +9,7 @@ export function Account(props) {
     const [newUserName, setNewUserName] = React.useState("");
     const [newPassword, setNewPassword] = React.useState('');
     const [displayError, setDisplayError] = React.useState(null);
+    const [comments, setComments] = React.useState(<UserComments />);
     
     async function changeUserName() {
         change('/api/auth/changeUser', "username");
@@ -54,6 +55,14 @@ export function Account(props) {
         }
     }
 
+    React.useEffect(() => {
+        fetch('/api/reviews/user')
+            .then((response) => response.json())
+            .then((data) => {
+                setComments(UserComments(data.reviews));
+            })
+    }, []);
+
     return (
         <main className="main-account">
             <h2 className="h2-account">Account Overview</h2>
@@ -63,7 +72,7 @@ export function Account(props) {
             </div>
             <div className="past-comments">
                 <h4 className="h4-account" >Your Comments</h4>
-                <UserComments />
+                {comments}
             </div>
 
             <h3 className="h3-account">Change Email or Password</h3>

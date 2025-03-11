@@ -113,12 +113,12 @@ apiRouter.get('/reviews/user', verifyAuth, (_req, res) => {
 });
 
 apiRouter.put('/reviews', verifyAuth, (req, res) => {
-    reviews = req.body.reviews;
+    updateReviews(req.body.review);
     res.send(reviews);
 });
 
-apiRouter.put('reviews/user', verifyAuth, (req, res) => {
-    user_reviews = req.body.reviews;
+apiRouter.put('/reviews/user', verifyAuth, (req, res) => {
+    updateUserReviews(req.body.review);
     res.send(user_reviews);
 });
 
@@ -171,6 +171,14 @@ function setAuthCookie(res, authToken) {
         httpOnly: true,
         sameSite: 'strict',
     });
+}
+
+function updateReviews(score){
+    reviews = [score, ...reviews];
+}
+
+function updateUserReviews(score) {
+    user_reviews = [score, ...user_reviews];
 }
 
 app.listen(port, () => {
