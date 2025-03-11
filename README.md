@@ -121,12 +121,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - Used Node.js for the backend, and express to handle the routing to the different services, as well as using it to do cookies, encryption, and tokens.
+- [x] **Static middleware for frontend** - Have a middleware function for static calls to the backend, which serves up the static files in the public directory. Also have middleware to support login, account creation, logout, verification, and updating the reviews.
+- [x] **Calls to third party endpoints** - I have one call to https://quote.cs260.click for a random quote. I did not really like most of the other quote APIs that I saw online, and when I saw that simon used this endpoint I decided to use it myself as the third party endpoint.
+- [x] **Backend service endpoints** - I created backend service endpoints for account creation, login, and logout; changing the username and changing the password; for getting the overall reviews and the reviews by the user, and for updating the reviews array and the user reviews array.
+- [x] **Frontend calls service endpoints** - The frontend calls the endpoints for account login, creation, and logout, changing usernames and passwords, and for updating and displaying the review data.
+- [x] **Supports registration, login, logout, and restricted endpoint** - Supports account creation, login, and logout, as well as verifying the authentication of the user for updating password, username, and updating and getting the review data.
 
 ## 🚀 DB deliverable
 
