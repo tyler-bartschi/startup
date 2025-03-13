@@ -353,4 +353,17 @@ console.log(b, c, others);
 - Tokens are used to give different roles, and thereby to limit access to different features
 - `bcrpytjs` for encrypting user passwords
 - `uuid` to generate random authentication token
+
+### PM2 and Service Daemons
+
+- in order to keep programs running after a shutdown you need to register it to a `daemon`
+
+### Development and Deployment
+
+- Actual companies use multiple separate environments to develop, test, and deploy code
+- A continuous integration (CI) is an automated process that builds the code, tests it, stages it, tests it more, and then finallyh deploys it
+- We use an automated deployment process, which is the deploy script
+
+- see uploading files code to see how to upload images. Do this for the custom books
+- Look into S3?
 - 
