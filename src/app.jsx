@@ -8,6 +8,7 @@ import {Login} from "./login/login";
 import {Home} from "./home/home";
 import {Reviews} from "./reviews/reviews";
 import {Account} from "./account/account";
+import {AddBook} from './add-book/add-book';
 import {AuthState} from "./login/authState";
 import {updateAverageScore} from "./home/updateAverageScore";
 
@@ -77,7 +78,9 @@ export default function App() {
                                                             setUserName(userName);
                                                         }}
                                                     />} />
+                    <Route path='/add-book' element={<AddBook />} />
                     <Route path="*" element={<NotFound />} />
+                    
                 </Routes>
 
                 <footer>

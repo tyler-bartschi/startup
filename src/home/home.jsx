@@ -2,7 +2,7 @@ import React from 'react';
 import "./home.css";
 import {useNavigate} from 'react-router-dom';
 import {CreateBooks} from './createBooks';
-import {Book} from "./bookTemplate";
+import {Book} from "../add-book/bookTemplate";
 
 export function Home({average, updateScore}) {
     const navigate = useNavigate();
@@ -53,7 +53,7 @@ export function Home({average, updateScore}) {
             {booksList}
 
             <div className="add-book-wrapper">
-                <button className="add-book-button" type="submit">Add A Book!</button>
+                <button className="add-book-button" type="submit" onClick={() => navigate('/add-book')} >Add A Book!</button>
             </div>
 
         </main>
