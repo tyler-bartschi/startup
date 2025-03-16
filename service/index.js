@@ -10,6 +10,7 @@ const authCookieName = 'token';
 let users = [];
 let reviews = [];
 let user_reviews = [];
+let state;
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -77,6 +78,17 @@ const verifyAuth = async (req, res, next) => {
         res.status(401).send({msg: 'Unauthorized'});
     }
 };
+
+// update the list of books
+apiRouter.get('/books', verifyAuth, async (req, res) => {
+
+});
+
+// which book to load when going to reviews
+apiRouter.put('/books/state', verifyAuth, async(req, res) => {
+    state = req.body.value;
+    res.send({msg: 'updated state'});
+});
 
 apiRouter.put('/auth/changeUser', verifyAuth, async (req, res) => {
     const result = await updateUser(req.body.field, req.body.value, req);
