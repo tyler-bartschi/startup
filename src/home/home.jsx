@@ -52,6 +52,10 @@ export function Home({average, updateScore}) {
             <h3 className="h3-home">Reviews</h3>
             {booksList}
 
+            <div className="add-book-wrapper">
+                <button className="add-book-button" type="submit">Add A Book!</button>
+            </div>
+
         </main>
     );
 }

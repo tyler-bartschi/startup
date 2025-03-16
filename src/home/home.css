@@ -119,3 +119,16 @@
 .disabled:hover {
     background-color: rgb(34, 158, 85);
 }
+
+.add-book-button {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-radius: 0.25em;
+    box-sizing: content-box;
+    background-color: rgb(12, 49, 173);
+    color: rgb(255, 253, 253);
+}
+
+.add-book-button:hover {
+    background-color: rgb(6, 31, 110);
+}
