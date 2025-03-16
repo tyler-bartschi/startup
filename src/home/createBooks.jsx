@@ -4,7 +4,7 @@ export function CreateBooks(bookArr) {
     const bookRows = [];
     if (bookArr.length === 0) {
         bookRows.push(
-            <div>No books yet!</div>
+            <div key={0}>No books yet!</div>
         );
     } else {
         for (let i = 0; i < bookArr.length; i++) {

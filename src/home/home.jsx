@@ -9,6 +9,7 @@ export function Home({average, updateScore}) {
     const [quote, setQuote] = React.useState("Tell them hi for me. Please.");
     const [quoteAuthor, setQuoteAuthor] = React.useState('Zachary Huckins');
     const [booksList, setBookList] = React.useState(CreateBooks([]));
+    // push starter book into the bookList on load
     
     // sets the quote on load
     React.useEffect(() => {
