@@ -27,24 +27,12 @@ export function Reviews({userName, average, updateScore}) {
             fetch('/api/reviews')
                 .then((response) => response.json())
                 .then((data) => {
-                    // review_data = data.reviews;
-                    // review_test = data.test;
-                    // console.log(review_test);
-                    // console.log(review_data);
-                    // console.log(test);
                     updateScoreTable(ScoreTable(data));
                     updateScore(data.reviews);
                     setOtherReviews(OtherReviews(data));
                 });
-            // localStorage.setItem('scores', JSON.stringify(revs));
-            // updateScoreTable(<ScoreTable />);
-            // updateScore(revs);
-            // setOtherReviews(<OtherReviews />);
     }, [revs]);
 
-    // React.useEffect(() => {
-    //     localStorage.setItem('userScores', JSON.stringify(userRevs))
-    // }, [userRevs]);
 
     // functions to check if the score entered is valid, and display a visual indication if it is not
     function check_score(e) {
