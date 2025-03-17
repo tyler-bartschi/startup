@@ -90,6 +90,10 @@ apiRouter.put('/books/state', verifyAuth, async(req, res) => {
     res.send({msg: 'updated state'});
 });
 
+apiRouter.put('/books/update', verifyAuth, async(req, res) => {
+
+});
+
 apiRouter.put('/auth/changeUser', verifyAuth, async (req, res) => {
     const result = await updateUser(req.body.field, req.body.value, req);
     if (result) {

@@ -46,22 +46,3 @@ export function AddBook() {
         </main>
     );
 }
-
-
-// <div className="review-box">
-//                 <div className="score-box">
-//                     <span className="selection-header">Overall Score</span>
-//                     <input id="rating" className="text rating-select" value={reviewScore} onChange={(e) => check_score(e)} placeholder="5"></input>
-//                     <span>/ 5</span>
-//                 </div>
-//                 <div>
-//                     <textarea id="text-reveiw" className="form-control review-text" value={userReview} onChange={(e) => setUserReview(e.target.value)} placeholder="Your Review Here"></textarea>
-//                 </div>
-//                 <div className="username">
-//                     <span>- {userName}</span>
-//                 </div>
-//                 <div>
-//                     {/* when submitting, check if the review score is 0. if it is, reject */}
-//                     <button className="review-submit" type="submit" onClick={() => updateReviews(reviewScore, userReview, userName)} disabled={!reviewScore || !userReview}>Submit Review</button>
-//                 </div>
-//             </div>
