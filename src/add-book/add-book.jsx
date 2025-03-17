@@ -10,7 +10,8 @@ export function AddBook() {
     const [summary, setSummary] = React.useState('');
 
     async function updateBooks() {
-
+        let new_book = new Book(title, author, summary, pages, "/placeholder.jpg")
+        // console.log(new_book);
     }
 
     return (
