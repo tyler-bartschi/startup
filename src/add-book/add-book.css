@@ -40,6 +40,25 @@
     height: 24vh;
 }
 
+.add-button {
+    margin-top: 2em;
+    background-color: rgb(12, 49, 173);
+    color: rgb(255, 253, 253);
+    border-radius: 0.25em;
+}
+
+.add-button:disabled {
+    background-color: rgb(142, 142, 153);
+}
+
+.add-button:hover {
+    background-color: rgb(6, 31, 110);
+}
+
+.add-button:disabled:hover {
+    background-color: rgb(142, 142, 153);
+}
+
 @media (max-height: 600px) {
     .main-data-wrapper {
         flex-direction: column;

@@ -9,6 +9,10 @@ export function AddBook() {
     const [pages, setPages] = React.useState('');
     const [summary, setSummary] = React.useState('');
 
+    async function updateBooks() {
+
+    }
+
     return (
         <main className="container-fluid">
             <h3 className="add-header">Add A Book</h3>
@@ -34,6 +38,8 @@ export function AddBook() {
                 </div>
                 
             </div>
+
+            <button className="add-button" type="submit" onClick={() => updateBooks()} disabled={!title || !author || !pages || !summary} >Add Book</button>
             
             
         </main>
