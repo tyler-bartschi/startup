@@ -34,6 +34,7 @@ export function Home({average, updateScore}) {
         fetch("/api/books")
             .then((response) => response.json())
             .then((data) => {
+                console.log(data);
                 setBookList(CreateBooks(data));
             })
             .catch();

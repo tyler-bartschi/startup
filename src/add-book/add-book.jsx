@@ -4,14 +4,35 @@ import './add-book.css';
 import {Book} from "./bookTemplate";
 
 export function AddBook() {
+    const navigate = useNavigate();
     const [title, setTitle] = React.useState('');
     const [author, setAuthor] = React.useState('');
     const [pages, setPages] = React.useState('');
     const [summary, setSummary] = React.useState('');
+    const [successMessage, setSuccessMessage] = React.useState('');
+    const [failMessage, setFailMessage] = React.useState('');
 
     async function updateBooks() {
+        setSuccessMessage("");
+        setFailMessage("");
+        setTitle("");
+        setAuthor("");
+        setPages("");
+        setSummary("");
         let new_book = new Book(title, author, summary, pages, "/placeholder.jpg")
-        // console.log(new_book);
+        await fetch('/api/books/update', {
+            method: "PUT",
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(new_book),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.msg === "Successfully added") {
+                    setSuccessMessage("Successfully added!");
+                } else {
+                    setFailMessage("Book already exists!");
+                }
+            });
     }
 
     return (
@@ -41,7 +62,9 @@ export function AddBook() {
             </div>
 
             <button className="add-button" type="submit" onClick={() => updateBooks()} disabled={!title || !author || !pages || !summary} >Add Book</button>
-            
+            <button className="return-button" type="submit" onClick={() => navigate('/home')}>Back to Home</button>
+            <div className="return-add-message-success">{successMessage}</div>
+            <div className="return-add-message-fail">{failMessage}</div>
             
         </main>
     );

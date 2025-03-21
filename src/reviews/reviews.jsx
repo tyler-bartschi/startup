@@ -1,7 +1,7 @@
 import React from 'react';
 import "./review.css";
 import {ScoreTable} from './scoreTable';
-import {Score} from './scoreModifier';
+import {Review} from './reviewData';
 import {OtherReviews} from "./otherReviews";
 import {leaveReview} from "./leaveReview";
 
@@ -51,7 +51,7 @@ export function Reviews({userName, average, updateScore}) {
     }
 
     async function updateReviews(reviewScore, userReview, userName, fromUser=true) {
-        let cur_score = new Score(userName, userReview, reviewScore);
+        let cur_score = new Review(userName, userReview, reviewScore);
         // add post fetch
         setReviews(prevValue => [cur_score, ...prevValue]);
         await fetch('/api/reviews', {

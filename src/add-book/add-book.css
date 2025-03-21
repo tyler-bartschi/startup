@@ -58,6 +58,30 @@
     background-color: rgb(142, 142, 153);
 }
 
+.return-button {
+    margin-top: 2em;
+    margin-left: 1em;
+    background-color: rgb(12, 49, 173);
+    color: rgb(255, 253, 253);
+    border-radius: 0.25em;
+}
+
+.return-button:hover {
+    background-color: rgb(6, 31, 110);
+}
+
+.return-add-message-success {
+    padding-top: 0.5em;
+    font-weight: bold;
+    color: rgb(14, 177, 9);
+}
+
+.return-add-message-fail {
+    padding-top: 0.5em;
+    font-weight: bold;
+    color: rgb(196, 28, 28);
+}
+
 @media (max-height: 600px) {
     .main-data-wrapper {
         flex-direction: column;
