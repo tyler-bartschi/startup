@@ -1,8 +1,8 @@
 import React from "react";
 import {ScoreTable} from "./scoreTable";
 
-export function LoadInfo(value) {
-    let scoreTable = ScoreTable(value.reviews);
+export function LoadInfo(value, reviews, average) {
+    let scoreTable = ScoreTable(reviews);
 
     return (
         <div>
@@ -21,7 +21,7 @@ export function LoadInfo(value) {
                     <div className="rating-data">
                         <h4 className="h4-review" >Total Ratings</h4>
                         {scoreTable}
-                        <p><b>Average Rating: </b><span className="rating-reviews">{value.getAverage()}</span> / 5</p>
+                        <p><b>Average Rating: </b><span className="rating-reviews">{average}</span> / 5</p>
                     </div>
                 </div>
             </div>

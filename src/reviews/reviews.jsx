@@ -20,16 +20,13 @@ export function Reviews({userName}) {
     const [book, setBook] = React.useState(temp_book_start);
     const [reviewListDisplay, setReviewListDisplay] = React.useState([]);
     const [displayError, setDisplayError] = React.useState(null);
+    const [average, setAverage] = React.useState(0);
 
 
     function simulateWebSocket() {
         const reviewInterval = setInterval(() => {
             let review_arr = leaveReview();
-            if (book.title === "temp") {
-                console.log("Attempted, aborted");
-            } else {
-                updateReviews(review_arr[0], review_arr[1], review_arr[2], false);
-            }
+            updateReviews(review_arr[0], review_arr[1], review_arr[2], false);
         }, 8000);
 
         return () => clearInterval(reviewInterval);
@@ -40,9 +37,7 @@ export function Reviews({userName}) {
         if (book.title !== "temp"){
             simulateWebSocket();
         }
-        // setInfo(LoadInfo(book));
     }, [book]);
-
 
     // functions to check if the score entered is valid, and display a visual indication if it is not
     function check_score(e) {
@@ -62,7 +57,25 @@ export function Reviews({userName}) {
 
     React.useEffect(() => {
         setOtherReviews(OtherReviews(reviewListDisplay))
+        let temp_average = calculateAverage();
+        setInfo(LoadInfo(book, reviewListDisplay, temp_average));
     }, [reviewListDisplay]);
+
+
+    async function calculateAverage() {
+        let temp_average = 0;
+        for (let i = 0; i < reviewListDisplay.length; i++) {
+            temp_average += parseInt(reviewListDisplay[i].score, 10);
+        }
+        temp_average = temp_average / reviewListDisplay.length;
+        temp_average = temp_average.toFixed(1);
+        setAverage(temp_average);
+        return temp_average;
+    }
+
+    async function updateList(cur_review) {
+        setReviewListDisplay(prevValue => [cur_review, ...prevValue]);
+    }
 
 
     async function updateReviews(reviewScore, userReview, userName, fromUser=true) {
@@ -72,8 +85,7 @@ export function Reviews({userName}) {
             return;
         }
         let cur_review = new Review(userName, userReview, reviewScore, book.title);
-        console.log(JSON.stringify(book.title));
-        setReviewListDisplay(prevValue => [cur_review, ...prevValue]);
+        await updateList(cur_review);
         await fetch('/api/books/update/reviews', {
             method: "PUT",
             headers: {'content-type': 'application/json'},
@@ -88,6 +100,7 @@ export function Reviews({userName}) {
                 body: JSON.stringify({review: cur_review}),
             });
         }
+
     }
 
     React.useEffect(() => { 
@@ -111,8 +124,9 @@ export function Reviews({userName}) {
                 let info = data[state];
                 let temp_book = new Book(info.title, info.author, info.summary, info.pages, info.image, info.reviews);
                 setBook(temp_book);
-                setInfo(LoadInfo(temp_book))
+                setAverage(temp_book.getAverage());
                 setReviewListDisplay(temp_book.reviews);
+                setInfo(LoadInfo(temp_book, reviewListDisplay, average));
             });
     }
 
