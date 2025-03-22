@@ -6,11 +6,12 @@ import {OtherReviews} from "./otherReviews";
 import {leaveReview} from "./leaveReview";
 import {LoadInfo} from "./loadInfo";
 import {Book} from "/src/add-book/bookTemplate";
+import {ErrorDialog} from "/src/login/errorDialog";
 
 export function Reviews({userName}) {
     let t = "temp"
     let temp_book = new Book(t, t, t, t, t);
-    const [scoreTable, updateScoreTable] = React.useState(<ScoreTable />);
+    // const [scoreTable, updateScoreTable] = React.useState(<ScoreTable />);
     const [otherRevs, setOtherReviews] = React.useState(<OtherReviews />);
     const [reviewScore, setReviewScore] = React.useState("");
     const [userReview, setUserReview] = React.useState("");
@@ -18,6 +19,8 @@ export function Reviews({userName}) {
     const [info, setInfo] = React.useState("");
     const [book, setBook] = React.useState(temp_book);
     const [reviewListDisplay, setReviewListDisplay] = React.useState([]);
+    const [displayError, setDisplayError] = React.useState(null);
+
     
     // simulates the WebSocket data, every 8 seconds it adds a review
     // React.useEffect(() => {
@@ -84,6 +87,11 @@ export function Reviews({userName}) {
 
 
     async function updateReviews(reviewScore, userReview, userName, fromUser=true) {
+        if (reviewScore === 0) {
+            setDisplayError("Invalid Score: score cannot be 0");
+            setReviewScore("");
+            return;
+        }
         let cur_review = new Review(userName, userReview, reviewScore, book.title);
         setReviewListDisplay(prevValue => [cur_review, ...prevValue]);
         await fetch('/api/books/update/reviews', {
@@ -109,7 +117,6 @@ export function Reviews({userName}) {
             .then((response) => response.json())
             .then((data) => {
                 let state = data.value;
-                // setState(LoadState(data.value));
                 setBook(getBook(state))
             });
         }, 200);
@@ -147,13 +154,9 @@ export function Reviews({userName}) {
                     <span>- {userName}</span>
                 </div>
                 <div>
-                    {/* when submitting, check if the review score is 0. if it is, reject */}
                     <button className="review-submit" type="submit" onClick={() => updateReviews(reviewScore, userReview, userName)} disabled={!reviewScore || !userReview}>Submit Review</button>
                 </div>
             </div>
-
-            {/* This will use database data to render past comments */}
-            {/* it might also use WebSocket so new comments are rendered in real time */}
 
             <div className="accordion" id="collapsible-reviews">
                 <div className="accordion-item">
@@ -167,6 +170,10 @@ export function Reviews({userName}) {
                     </div>
                 </div>
             </div>
+            <ErrorDialog message={displayError} onHide={() => setDisplayError(null)} />
         </main>
+
+        
+
     );
 }
