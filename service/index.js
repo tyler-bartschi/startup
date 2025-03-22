@@ -104,11 +104,16 @@ apiRouter.put('/books/update/reviews', verifyAuth, async (req, res) => {
 });
 
 apiRouter.put('/auth/changeUser', verifyAuth, async (req, res) => {
-    const result = await updateUser(req.body.field, req.body.value, req);
-    if (result) {
-        res.send({username: req.body.value});
+    const prev = await DB.getUser(req.body.value);
+    if (prev) {
+        res.status(401).send({msg: "Existing Username"});
     } else {
-        res.status(401).send({msg: 'Process failed'});
+        const result = await updateUser(req.body.field, req.body.value, req);
+        if (result) {
+            res.send({username: req.body.value});
+        } else {
+            res.status(401).send({msg: 'Process failed'});
+        }
     }
 });
 
@@ -175,16 +180,15 @@ async function createUser(username, password) {
 
 async function updateUser(field, value, req) {
     const user = await findUser('token', req.cookies[authCookieName]);
-    console.log(user);
 
     if (field === "username") {
         user.username = value;
-        DB.updateUser(user);
+        DB.updateUserByToken(user);
         return true;
     } else if (field === "password") {
         const passwordHash = await bcrypt.hash(value, 10);
         user.password = passwordHash;
-        DB.updateUser(user);
+        DB.updateUserByToken(user);
         return true;
     }
     return null;
