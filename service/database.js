@@ -53,6 +53,10 @@ async function updateUserByToken(user) {
     await userCollection.updateOne({token: user.token}, {$set: user});
 }
 
+async function findBookByTitle(title) {
+    return bookCollection.findOne({title: title});
+}
+
 
 module.exports = {
     getUser,
@@ -64,4 +68,5 @@ module.exports = {
     getBooksList,
     updateBook,
     updateUserByToken,
+    findBookByTitle,
 };

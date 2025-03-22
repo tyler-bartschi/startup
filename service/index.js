@@ -127,36 +127,20 @@ apiRouter.put('/auth/changePass', verifyAuth, async (req, res) => {
 });
 
 apiRouter.get('/user/reviews', verifyAuth, async (req, res) => {
-    const user = findUser('token', req.cookies[authCookieName]);
+    const user = await findUser('token', req.cookies[authCookieName]);
     res.send({value: JSON.stringify(user.reviews)});
 });
 
-// apiRouter.get('/reviews', verifyAuth, (_req, res) => {
-//     if (reviews == []) {
-//         res.send(JSON.stringify({reviews: "[]"}));
-//     } else {
-//         res.send(JSON.stringify({reviews: reviews}));
-//     }
-    
-// });
-
-// apiRouter.get('/reviews/user', verifyAuth, (_req, res) => {
-//     if (user_reviews == []) {
-//         res.send(JSON.stringify({reviews: "[]"}));
-//     } else {
-//         res.send(JSON.stringify({reviews: user_reviews}));
-//     }
-// });
-
-// apiRouter.put('/reviews', verifyAuth, (req, res) => {
-//     updateReviews(req.body.review);
-//     res.send(reviews);
-// });
-
-// apiRouter.put('/reviews/user', verifyAuth, (req, res) => {
-//     updateUserReviews(req.body.review);
-//     res.send(user_reviews);
-// });
+apiRouter.put('/user/reviews/update', verifyAuth, async (req, res) => {
+    const user = await findUser('token', req.cookies[authCookieName]);
+    if (JSON.stringify(user.reviews) === "[]") {
+        user.reviews = [req.body.review];
+    } else {
+        user.reviews = [req.body.review, ...user.reviews];
+    }
+    await DB.updateUser(user);
+    res.send({msg: "updated"});
+});
 
 // default error handling
 app.use(function (err, req, res, next) {
@@ -210,8 +194,6 @@ async function findUser(field, value) {
 
 async function updateBooks(book) {
     const result = await DB.findBook(book);
-    console.log(book);
-    console.log(result);
     if (result) {
         return false;
     }
@@ -229,8 +211,12 @@ async function getBooks() {
 }
 
 async function updateBookReview(title, value) {
-    const book = await DB.findBook(title);
-    book.reviews = [value, ...book.reviews];
+    const book = await DB.findBookByTitle(title);
+    if (!book.reviews) {
+        book.reviews = [value];
+    } else {
+        book.reviews = [value, ...book.reviews];
+    }
     await DB.updateBook(book);
 }
 
@@ -241,14 +227,6 @@ function setAuthCookie(res, authToken) {
         sameSite: 'strict',
     });
 }
-
-// function updateReviews(score){
-//     reviews = [score, ...reviews];
-// }
-
-// function updateUserReviews(score) {
-//     user_reviews = [score, ...user_reviews];
-// }
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

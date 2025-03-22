@@ -68,14 +68,6 @@ export function Account(props) {
         }
     }
 
-    // React.useEffect(() => {
-    //     fetch('/api/reviews/user')
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             setComments(UserComments(data.reviews);
-    //         })
-    // }, []);
-
     React.useEffect(() => {
         fetch('/api/user/reviews')
             .then((response) => response.json())
@@ -97,7 +89,7 @@ export function Account(props) {
                 <span className="account-username">{props.userName}</span>
             </div>
             <div className="past-comments">
-                <h4 className="h4-account" >Your Comments</h4>
+                <h4 className="h4-account" >Your Reviews</h4>
                 {comments}
             </div>
 

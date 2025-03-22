@@ -2,9 +2,9 @@ import React from 'react';
 
 export function ScoreTable(scoresText) {
     const scoreRows = [];
-    console.log(scoresText);
+    // console.log(scoresText);
     if (JSON.stringify(scoresText) != "[]") {
-        let raw_scores = scoresText.reviews;
+        let raw_scores = scoresText;
         let scores = countScores(raw_scores);
         for (let i = 5; i > 0; i--) {
             scoreRows.push(
@@ -38,8 +38,8 @@ export function ScoreTable(scoresText) {
         let counted_scores = [];
         for (let i = 1; i < 6; i++) {
             let count = 0;
-            for (const item of raw_scores) {
-                if (item.score == i) {
+            for (let j = 0; j < raw_scores.length; j++) {
+                if (raw_scores[j].score == i) {
                     count++;
                 }
             }

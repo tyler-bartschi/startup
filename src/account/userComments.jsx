@@ -10,16 +10,15 @@ export function UserComments(reviewText){
     if (JSON.stringify(reviewText) != "[]") {
         // console.log(reviewText);
         // let reviews = reviewText;
-        let count = 0;
-        for (let i = 0; i < reviewText.length; i++) {
+        let reviewData = JSON.parse(reviewText);
+        for (let i = 0; i < reviewData.length; i++) {
             reviewRows.push(
-                <div key={count} className="comment">
-                    <p className="book-title">{reviewText[i].title}</p>
-                    <p className="star">{"★".repeat(reviewText[i].score)}</p>
-                    <p className="comment-text">{reviewText[i].comment}</p>
+                <div key={i} className="comment">
+                    <p className="book-title">{reviewData[i].title}</p>
+                    <p className="star">{"★".repeat(reviewData[i].score)}</p>
+                    <p className="comment-text">{reviewData[i].comment}</p>
                 </div>
             );
-            count++;
         }
     } else {
         reviewRows.push(

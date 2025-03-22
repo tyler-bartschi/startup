@@ -7,11 +7,10 @@ export function OtherReviews(reviewText){
     // const reviewText =  fetch("/api/reviews")
     //                         .then((response) => response.text());
 
-    if (JSON.stringify(reviewText) != "{}"){
+    if (JSON.stringify(reviewText) != "[]"){
         // let review_arr = JSON.parse(reviewText);
-        let review_arr = reviewText.reviews;
-        for (let i = 0; i < review_arr.length; i++) {
-            let cur_review = review_arr[i];
+        for (let i = 0; i < reviewText.length; i++) {
+            let cur_review = reviewText[i];
             reviewRows.push(
                 <div key={i} className="review">
                     <span className="review-star">{"★".repeat(cur_review.score)}</span>

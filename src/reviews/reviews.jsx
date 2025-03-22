@@ -17,6 +17,7 @@ export function Reviews({userName}) {
     // const [userRevs, setUserRevs] = React.useState([]);
     const [info, setInfo] = React.useState("");
     const [book, setBook] = React.useState(temp_book);
+    const [reviewListDisplay, setReviewListDisplay] = React.useState([]);
     
     // simulates the WebSocket data, every 8 seconds it adds a review
     // React.useEffect(() => {
@@ -78,6 +79,30 @@ export function Reviews({userName}) {
     // }
 
     React.useEffect(() => {
+        setOtherReviews(OtherReviews(reviewListDisplay))
+    }, [reviewListDisplay]);
+
+
+    async function updateReviews(reviewScore, userReview, userName, fromUser=true) {
+        let cur_review = new Review(userName, userReview, reviewScore, book.title);
+        setReviewListDisplay(prevValue => [cur_review, ...prevValue]);
+        await fetch('/api/books/update/reviews', {
+            method: "PUT",
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({title: book.title, review: cur_review}),
+        });
+        if (fromUser) {
+            setReviewScore("");
+            setUserReview("");
+            await fetch('/api/user/reviews/update', {
+                method: "PUT",
+                headers: {'content-type': 'application/json'},
+                body: JSON.stringify({review: cur_review}),
+            });
+        }
+    }
+
+    React.useEffect(() => {
         setInfo("loading...");
         const wait = setTimeout(() => {
             fetch("/api/books/state")
@@ -100,6 +125,7 @@ export function Reviews({userName}) {
                 let temp_book = new Book(info.title, info.author, info.summary, info.pages, info.image, info.reviews);
                 setBook(temp_book);
                 setInfo(LoadInfo(temp_book))
+                setReviewListDisplay(temp_book.reviews);
             });
     }
 
