@@ -10,7 +10,7 @@ export class Book {
     }
 
     updateAverage() {
-        if (this.reviews.length == 0) {
+        if (this.reviews.length === 0) {
             this.average = 0;
         } else {
             let total = 0;

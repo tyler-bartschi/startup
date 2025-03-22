@@ -1,9 +1,9 @@
 import React from 'react';
 import {Book} from "/src/add-book/bookTemplate"
 
-export function CreateBooks(bookArr) {
+export function CreateBooks(bookArr, navigate) {
     const bookRows = [];
-    if (bookArr.length === 0) {
+    if (JSON.stringify(bookArr) === "[]") {
         bookRows.push(
             <div key={0}>No books yet!</div>
         );
@@ -37,7 +37,6 @@ export function CreateBooks(bookArr) {
             );
         }
     }
-
 
     return (
         <div>

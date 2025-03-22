@@ -9,6 +9,7 @@ export function Home({average, updateScore}) {
     const [quote, setQuote] = React.useState("Tell them hi for me. Please.");
     const [quoteAuthor, setQuoteAuthor] = React.useState('Zachary Huckins');
     const [booksList, setBookList] = React.useState(CreateBooks([]));
+    // const [bookObjects, setBookObjects] = React.useState([]);
     // push starter book into the bookList on load
     
     // sets the quote on load
@@ -35,10 +36,29 @@ export function Home({average, updateScore}) {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setBookList(CreateBooks(data));
+                console.log(JSON.stringify(data));
+                if(!data || JSON.stringify(data) == "[]") {
+                    setBookList(CreateBooks([], navigate))
+                } else {
+                    setBookList(CreateBooks(data, navigate));
+                }
+                // updateBooks(data);
             })
             .catch();
     }, []);
+
+    // Note to self: this only probably works
+    // function updateBooks(data) {
+    //     const book_data = [];
+    //     if (!(data.length === 0)) {
+    //         for (let i = 0; i < data.length; i++) {
+    //             let cur_item = data[i];
+    //             let cur_book = new Book(cur_item.title, cur_item.author, cur_item.summary, cur_item.pages, cur_item.image, cur_item.reviews);
+    //             book_data.push(cur_book);
+    //         }
+    //     }
+    //     setBookObjects(book_data);
+    // }
 
     return (
         <main className="container-fluid">
@@ -57,7 +77,6 @@ export function Home({average, updateScore}) {
             <div className="add-book-wrapper">
                 <button className="add-book-button" type="submit" onClick={() => navigate('/add-book')} >Add A Book!</button>
             </div>
-
         </main>
     );
 }
