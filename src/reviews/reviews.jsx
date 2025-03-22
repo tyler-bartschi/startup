@@ -10,14 +10,14 @@ import {ErrorDialog} from "/src/login/errorDialog";
 
 export function Reviews({userName}) {
     let t = "temp"
-    let temp_book = new Book(t, t, t, t, t);
+    let temp_book_start = new Book(t, t, t, t, t);
     // const [scoreTable, updateScoreTable] = React.useState(<ScoreTable />);
     const [otherRevs, setOtherReviews] = React.useState(<OtherReviews />);
     const [reviewScore, setReviewScore] = React.useState("");
     const [userReview, setUserReview] = React.useState("");
     // const [userRevs, setUserRevs] = React.useState([]);
     const [info, setInfo] = React.useState("");
-    const [book, setBook] = React.useState(temp_book);
+    const [book, setBook] = React.useState(temp_book_start);
     const [reviewListDisplay, setReviewListDisplay] = React.useState([]);
     const [displayError, setDisplayError] = React.useState(null);
 
@@ -42,6 +42,47 @@ export function Reviews({userName}) {
     //             });
     // }, [revs]);
 
+    // React.useEffect(() => {
+    //     const executeEffect = () => {
+    //         const review_interval = setInterval(() => {
+    //             let review_arr = leaveReview();
+    //             updateReviews(review_arr[0], review_arr[1], review_arr[2], false);
+    //         }, 8000);
+    //     }
+
+    //     const webSimulate = setTimeout(() => {
+    //         executeEffect()
+    //     }, 1000);
+
+    //     return () => {
+    //         clearTimeout(webSimulate);
+    //         clearInterval(review_interval);
+    //     }
+    // }, []);
+
+    function simulateWebSocket() {
+        const reviewInterval = setInterval(() => {
+            let review_arr = leaveReview();
+            if (book.title === "temp") {
+                console.log("Attempted, aborted");
+            } else {
+                updateReviews(review_arr[0], review_arr[1], review_arr[2], false);
+            }
+        }, 8000);
+
+        return () => clearInterval(reviewInterval);
+
+    }
+
+    React.useEffect(() => {
+        if (book.title !== "temp"){
+            simulateWebSocket();
+        }
+    }, [book])
+
+
+
+
 
     // functions to check if the score entered is valid, and display a visual indication if it is not
     function check_score(e) {
@@ -59,28 +100,6 @@ export function Reviews({userName}) {
         e.target.classList.remove('flash-red');
     }
 
-    // async function updateReviews(reviewScore, userReview, userName, fromUser=true) {
-    //     let cur_score = new Review(userName, userReview, reviewScore);
-    //     // add post fetch
-    //     setReviews(prevValue => [cur_score, ...prevValue]);
-    //     await fetch('/api/reviews', {
-    //         method: "PUT",
-    //         headers: {'content-type': 'application/json'},
-    //         body: JSON.stringify({review: cur_score}),
-    //     });
-    //     if (fromUser){
-    //         setReviewScore("");
-    //         setUserReview("");
-    //         setUserRevs(prevValue => [cur_score, ...prevValue]);
-    //         // add post fetch
-    //         await fetch('/api/reviews/user', {
-    //             method: "PUT",
-    //             headers:  {'content-type': 'application/json'},
-    //             body: JSON.stringify({review: cur_score}),
-    //         });
-    //     }
-    // }
-
     React.useEffect(() => {
         setOtherReviews(OtherReviews(reviewListDisplay))
     }, [reviewListDisplay]);
@@ -93,6 +112,7 @@ export function Reviews({userName}) {
             return;
         }
         let cur_review = new Review(userName, userReview, reviewScore, book.title);
+        console.log(JSON.stringify(book.title));
         setReviewListDisplay(prevValue => [cur_review, ...prevValue]);
         await fetch('/api/books/update/reviews', {
             method: "PUT",
@@ -110,14 +130,14 @@ export function Reviews({userName}) {
         }
     }
 
-    React.useEffect(() => {
+    React.useEffect(() => { 
         setInfo("loading...");
         const wait = setTimeout(() => {
             fetch("/api/books/state")
             .then((response) => response.json())
             .then((data) => {
                 let state = data.value;
-                setBook(getBook(state))
+                getBook(state);
             });
         }, 200);
         

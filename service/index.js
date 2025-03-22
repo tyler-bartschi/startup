@@ -212,7 +212,7 @@ async function getBooks() {
 
 async function updateBookReview(title, value) {
     const book = await DB.findBookByTitle(title);
-    if (!book.reviews) {
+    if (JSON.stringify(book.reviews) === "[]") {
         book.reviews = [value];
     } else {
         book.reviews = [value, ...book.reviews];
