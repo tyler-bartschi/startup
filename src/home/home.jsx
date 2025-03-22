@@ -4,13 +4,12 @@ import {useNavigate} from 'react-router-dom';
 import {CreateBooks} from './createBooks';
 import {Book} from "../add-book/bookTemplate";
 
-export function Home({average, updateScore}) {
+export function Home() {
     const navigate = useNavigate();
     const [quote, setQuote] = React.useState("Tell them hi for me. Please.");
     const [quoteAuthor, setQuoteAuthor] = React.useState('Zachary Huckins');
     const [booksList, setBookList] = React.useState(CreateBooks([]));
     // const [bookObjects, setBookObjects] = React.useState([]);
-    // push starter book into the bookList on load
     
     // sets the quote on load
     React.useEffect(() => {
@@ -35,8 +34,8 @@ export function Home({average, updateScore}) {
         fetch("/api/books")
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
-                console.log(JSON.stringify(data));
+                // console.log(data);
+                // console.log(JSON.stringify(data));
                 if(!data || JSON.stringify(data) == "[]") {
                     setBookList(CreateBooks([], navigate))
                 } else {

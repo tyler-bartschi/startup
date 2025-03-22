@@ -59,19 +59,9 @@ export default function App() {
                                                     setUserName(userName);
                                                 }}
                                             />} exact />
-                    <Route path="/home" element={<Home 
-                                                    average={averageScore} 
-                                                    updateScore={(revs) => {
-                                                        setAverageScore(updateAverageScore(revs));
-                                                    }} 
-                                                />} />
+                    <Route path="/home" element={<Home  />} />
                     <Route path='/reviews' element={<Reviews 
-                                                        userName={userName}
-                                                        average={averageScore}
-                                                        updateScore={(revs) => {
-                                                            setAverageScore(updateAverageScore(revs));
-                                                        }}
-                                                    />} />
+                                                        userName={userName}/>} />
                     <Route path='/account' element={<Account 
                                                         userName={userName}
                                                         onUserChange={(userName) => {

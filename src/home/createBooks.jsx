@@ -23,7 +23,7 @@ export function CreateBooks(bookArr, navigate) {
                             </div>
                             <div className="button-wrapper">
                                 <button className="review-button" type="submit" onClick={() => {
-                                    fetch('/api/books/state', {
+                                    fetch('/api/books/update/state', {
                                         method: 'put',
                                         body: JSON.stringify({value: i}),
                                         headers: {'Content-type': 'application/json; charset=UTF-8'},

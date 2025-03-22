@@ -4,34 +4,39 @@ import {ScoreTable} from './scoreTable';
 import {Review} from './reviewData';
 import {OtherReviews} from "./otherReviews";
 import {leaveReview} from "./leaveReview";
+import {LoadInfo} from "./loadInfo";
+import {Book} from "/src/add-book/bookTemplate";
 
-export function Reviews({userName, average, updateScore}) {
+export function Reviews({userName}) {
+    let t = "temp"
+    let temp_book = new Book(t, t, t, t, t);
     const [scoreTable, updateScoreTable] = React.useState(<ScoreTable />);
     const [otherRevs, setOtherReviews] = React.useState(<OtherReviews />);
     const [reviewScore, setReviewScore] = React.useState("");
     const [userReview, setUserReview] = React.useState("");
-    const [revs, setReviews] = React.useState([]);
-    const [userRevs, setUserRevs] = React.useState([]);
+    // const [userRevs, setUserRevs] = React.useState([]);
+    const [info, setInfo] = React.useState("");
+    const [book, setBook] = React.useState(temp_book);
     
     // simulates the WebSocket data, every 8 seconds it adds a review
-    React.useEffect(() => {
-            const review_interval = setInterval(() => {
-                let review_arr = leaveReview();
-                updateReviews(review_arr[0], review_arr[1], review_arr[2], false);
-            }, 8000);
+    // React.useEffect(() => {
+    //         const review_interval = setInterval(() => {
+    //             let review_arr = leaveReview();
+    //             updateReviews(review_arr[0], review_arr[1], review_arr[2], false);
+    //         }, 8000);
 
-            return () => clearInterval(review_interval);
-        },[]);
+    //         return () => clearInterval(review_interval);
+    //     },[]);
 
-    React.useEffect(() => {
-            fetch('/api/reviews')
-                .then((response) => response.json())
-                .then((data) => {
-                    updateScoreTable(ScoreTable(data));
-                    updateScore(data.reviews);
-                    setOtherReviews(OtherReviews(data));
-                });
-    }, [revs]);
+    // React.useEffect(() => {
+    //         fetch('/api/reviews')
+    //             .then((response) => response.json())
+    //             .then((data) => {
+    //                 updateScoreTable(ScoreTable(data));
+    //                 // updateScore(data.reviews);
+    //                 setOtherReviews(OtherReviews(data));
+    //             });
+    // }, [revs]);
 
 
     // functions to check if the score entered is valid, and display a visual indication if it is not
@@ -50,59 +55,53 @@ export function Reviews({userName, average, updateScore}) {
         e.target.classList.remove('flash-red');
     }
 
-    async function updateReviews(reviewScore, userReview, userName, fromUser=true) {
-        let cur_score = new Review(userName, userReview, reviewScore);
-        // add post fetch
-        setReviews(prevValue => [cur_score, ...prevValue]);
-        await fetch('/api/reviews', {
-            method: "PUT",
-            headers: {'content-type': 'application/json'},
-            body: JSON.stringify({review: cur_score}),
-        });
-        if (fromUser){
-            setReviewScore("");
-            setUserReview("");
-            setUserRevs(prevValue => [cur_score, ...prevValue]);
-            // add post fetch
-            await fetch('/api/reviews/user', {
-                method: "PUT",
-                headers:  {'content-type': 'application/json'},
-                body: JSON.stringify({review: cur_score}),
+    // async function updateReviews(reviewScore, userReview, userName, fromUser=true) {
+    //     let cur_score = new Review(userName, userReview, reviewScore);
+    //     // add post fetch
+    //     setReviews(prevValue => [cur_score, ...prevValue]);
+    //     await fetch('/api/reviews', {
+    //         method: "PUT",
+    //         headers: {'content-type': 'application/json'},
+    //         body: JSON.stringify({review: cur_score}),
+    //     });
+    //     if (fromUser){
+    //         setReviewScore("");
+    //         setUserReview("");
+    //         setUserRevs(prevValue => [cur_score, ...prevValue]);
+    //         // add post fetch
+    //         await fetch('/api/reviews/user', {
+    //             method: "PUT",
+    //             headers:  {'content-type': 'application/json'},
+    //             body: JSON.stringify({review: cur_score}),
+    //         });
+    //     }
+    // }
+
+    React.useEffect(() => {
+        fetch("/api/books/state")
+            .then((response) => response.json())
+            .then((data) => {
+                let state = data.value;
+                // setState(LoadState(data.value));
+                setBook(getBook(state))
             });
-        }
+    }, []);
+
+    function getBook(state) {
+        fetch('/api/books')
+            .then((response) => response.json())
+            .then((data) => {
+                let info = data[state];
+                let temp_book = new Book(info.title, info.author, info.summary, info.pages, info.image, info.reviews);
+                setBook(temp_book);
+                setInfo(LoadInfo(temp_book))
+            });
     }
 
 
     return (
         <main className="container-fluid">
-            <div className="book-wrapper">
-                <div className="image">
-                    <img className="book-cover-review" src="/the-way-of-kings.jpg" width="150px" alt="The Way of Kings cover" />
-                </div>
-                <div className="book-data-wrapper">
-                    <div className="book-data-review">
-                        <p className="title">The Way of Kings</p>
-                        <p><b>Author: </b><span>Brandon Sanderson</span></p>
-                        <p><b>Page Count: </b><span>1,280</span></p>
-                    </div>
-                </div>
-                <div className="rating-data-wrapper">
-                    <div className="rating-data">
-                        <h4 className="h4-review" >Total Ratings</h4>
-                        {scoreTable}
-                        <p><b>Average Rating: </b><span className="rating-reviews">{average}</span> / 5</p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="summary container-fluid">
-                <h4 className='h4-summary' >Summary</h4>
-                <p>I long for the days before the Last Desolation. Before the Heralds abondoned us and the Knights Radiant turned against us. When there was still magic in Roshar and honor in the hearts of men.</p>
-                <p>In the end, not war but victory proved the greater test. Did our foes see that the harder they fought, the fiercer our resistance? Fire and hammer forge a sword; time and neglect rust it away. So we won the world, yet lost it.</p>
-                <p>Now there are four whom we watch: the surgeon, forced to forsake healing and fight in the most brutal war of our time; the assassin, who weeps as he kills; the liar, who wears her scholar's mantle over a thief's heart; and the prince, whose eyes open to the ancient past as his thirst for battle wanes.</p>
-                <p>One of them may redeem us. One of them will destory us.</p>
-            </div>
-
+            {info}
             <h3 className="h3-review">Reviews</h3>
             <div className="review-box">
                 <div className="score-box">

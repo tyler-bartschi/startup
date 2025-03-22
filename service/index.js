@@ -9,7 +9,7 @@ const authCookieName = 'token';
 
 let reviews = [];
 let user_reviews = [];
-let state;
+let state = 0;
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -90,11 +90,17 @@ apiRouter.get('/books', verifyAuth, async (req, res) => {
     }
 });
 
+apiRouter.get('/books/state', verifyAuth, async (req, res) => {
+    res.send({value: state});
+});
+
+
 // which book to load when going to reviews
-apiRouter.put('/books/state', verifyAuth, async(req, res) => {
+apiRouter.put('/books/update/state', verifyAuth, async(req, res) => {
     state = req.body.value;
     res.send({msg: 'updated state'});
 });
+
 
 apiRouter.put('/books/update', verifyAuth, async(req, res) => {
     const result = await updateBooks(req.body);
