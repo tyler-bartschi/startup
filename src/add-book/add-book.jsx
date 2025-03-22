@@ -15,10 +15,6 @@ export function AddBook() {
     async function updateBooks() {
         setSuccessMessage("");
         setFailMessage("");
-        setTitle("");
-        setAuthor("");
-        setPages("");
-        setSummary("");
         let new_book = new Book(title, author, summary, pages, "/placeholder.jpg")
         await fetch('/api/books/update', {
             method: "PUT",
@@ -33,6 +29,10 @@ export function AddBook() {
                     setFailMessage("Book already exists!");
                 }
             });
+        setTitle("");
+        setAuthor("");
+        setPages("");
+        setSummary("");
     }
 
     return (
