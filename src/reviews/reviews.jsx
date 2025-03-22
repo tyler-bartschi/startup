@@ -11,11 +11,9 @@ import {ErrorDialog} from "/src/login/errorDialog";
 export function Reviews({userName}) {
     let t = "temp"
     let temp_book_start = new Book(t, t, t, t, t);
-    // const [scoreTable, updateScoreTable] = React.useState(<ScoreTable />);
     const [otherRevs, setOtherReviews] = React.useState(<OtherReviews />);
     const [reviewScore, setReviewScore] = React.useState("");
     const [userReview, setUserReview] = React.useState("");
-    // const [userRevs, setUserRevs] = React.useState([]);
     const [info, setInfo] = React.useState("");
     const [book, setBook] = React.useState(temp_book_start);
     const [reviewListDisplay, setReviewListDisplay] = React.useState([]);
@@ -166,8 +164,5 @@ export function Reviews({userName}) {
             </div>
             <ErrorDialog message={displayError} onHide={() => setDisplayError(null)} />
         </main>
-
-        
-
     );
 }

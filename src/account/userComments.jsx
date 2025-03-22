@@ -3,13 +3,7 @@ import React from 'react';
 export function UserComments(reviewText){
     const reviewRows = []
 
-    // const reviewText = localStorage.getItem('userScores');
-    // const reviewText = fetch('/api/reviews/user')
-    //                     .then((response) => response.json());
-
     if (JSON.stringify(reviewText) != "[]") {
-        // console.log(reviewText);
-        // let reviews = reviewText;
         let reviewData = JSON.parse(reviewText);
         for (let i = 0; i < reviewData.length; i++) {
             reviewRows.push(
@@ -32,5 +26,3 @@ export function UserComments(reviewText){
         </div>
     );
 }
-
-// reviewText && reviewText != "null" && reviewText != "[]"

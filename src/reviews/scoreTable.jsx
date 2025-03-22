@@ -2,7 +2,6 @@ import React from 'react';
 
 export function ScoreTable(scoresText) {
     const scoreRows = [];
-    // console.log(scoresText);
     if (JSON.stringify(scoresText) != "[]") {
         let raw_scores = scoresText;
         let scores = countScores(raw_scores);

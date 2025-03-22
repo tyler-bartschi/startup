@@ -10,13 +10,11 @@ import {Reviews} from "./reviews/reviews";
 import {Account} from "./account/account";
 import {AddBook} from './add-book/add-book';
 import {AuthState} from "./login/authState";
-import {updateAverageScore} from "./home/updateAverageScore";
 
 export default function App() {
     const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
     const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
     const [authState, setAuthState] = React.useState(currentAuthState);
-    const [averageScore, setAverageScore] = React.useState(0);
 
     return ( 
         <BrowserRouter>
