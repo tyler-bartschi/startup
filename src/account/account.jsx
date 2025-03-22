@@ -72,7 +72,7 @@ export function Account(props) {
         fetch('/api/user/reviews')
             .then((response) => response.json())
             .then((data) => {
-                console.log(data.value);
+                // console.log(data.value);
                 if (data.value) {
                     setComments(UserComments(data.value));
                 } else {
