@@ -34,11 +34,11 @@ export default function App() {
                                         <NavLink to="home" className="nav-link px-2 py-1 link-dark">Home</NavLink>
                                     </li>
                                 )}
-                                {authState === AuthState.Authenticated && (
+                                {/* {authState === AuthState.Authenticated && (
                                     <li className="nav-item">
                                         <NavLink to="reviews" className="nav-link px-2 py-1 link-dark">Reviews</NavLink>
                                     </li>
-                                )}
+                                )} */}
                                 {authState === AuthState.Authenticated && (
                                     <li className="nav-item">
                                         <NavLink to="account" className="nav-link px-2 py-1 link-dark">Account</NavLink>
