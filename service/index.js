@@ -126,6 +126,11 @@ apiRouter.put('/auth/changePass', verifyAuth, async (req, res) => {
     }
 });
 
+apiRouter.get('/user/reviews', verifyAuth, async (req, res) => {
+    const user = findUser('token', req.cookies[authCookieName]);
+    res.send({value: JSON.stringify(user.reviews)});
+});
+
 // apiRouter.get('/reviews', verifyAuth, (_req, res) => {
 //     if (reviews == []) {
 //         res.send(JSON.stringify({reviews: "[]"}));

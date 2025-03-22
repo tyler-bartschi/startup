@@ -7,14 +7,14 @@ export function UserComments(reviewText){
     // const reviewText = fetch('/api/reviews/user')
     //                     .then((response) => response.json());
 
-    if (JSON.stringify(reviewText) != "{}") {
+    if (JSON.stringify(reviewText) != "[]") {
         // console.log(reviewText);
         // let reviews = reviewText;
         let count = 0;
         for (let i = 0; i < reviewText.length; i++) {
             reviewRows.push(
                 <div key={count} className="comment">
-                    <p className="book-title">The Way of Kings</p>
+                    <p className="book-title">{reviewText[i].title}</p>
                     <p className="star">{"★".repeat(reviewText[i].score)}</p>
                     <p className="comment-text">{reviewText[i].comment}</p>
                 </div>
