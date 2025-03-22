@@ -8,6 +8,7 @@ import {Login} from "./login/login";
 import {Home} from "./home/home";
 import {Reviews} from "./reviews/reviews";
 import {Account} from "./account/account";
+import {AddBook} from './add-book/add-book';
 import {AuthState} from "./login/authState";
 import {updateAverageScore} from "./home/updateAverageScore";
 
@@ -33,11 +34,11 @@ export default function App() {
                                         <NavLink to="home" className="nav-link px-2 py-1 link-dark">Home</NavLink>
                                     </li>
                                 )}
-                                {authState === AuthState.Authenticated && (
+                                {/* {authState === AuthState.Authenticated && (
                                     <li className="nav-item">
                                         <NavLink to="reviews" className="nav-link px-2 py-1 link-dark">Reviews</NavLink>
                                     </li>
-                                )}
+                                )} */}
                                 {authState === AuthState.Authenticated && (
                                     <li className="nav-item">
                                         <NavLink to="account" className="nav-link px-2 py-1 link-dark">Account</NavLink>
@@ -58,26 +59,18 @@ export default function App() {
                                                     setUserName(userName);
                                                 }}
                                             />} exact />
-                    <Route path="/home" element={<Home 
-                                                    average={averageScore} 
-                                                    updateScore={(revs) => {
-                                                        setAverageScore(updateAverageScore(revs));
-                                                    }} 
-                                                />} />
+                    <Route path="/home" element={<Home  />} />
                     <Route path='/reviews' element={<Reviews 
-                                                        userName={userName}
-                                                        average={averageScore}
-                                                        updateScore={(revs) => {
-                                                            setAverageScore(updateAverageScore(revs));
-                                                        }}
-                                                    />} />
+                                                        userName={userName}/>} />
                     <Route path='/account' element={<Account 
                                                         userName={userName}
                                                         onUserChange={(userName) => {
                                                             setUserName(userName);
                                                         }}
                                                     />} />
+                    <Route path='/add-book' element={<AddBook />} />
                     <Route path="*" element={<NotFound />} />
+                    
                 </Routes>
 
                 <footer>

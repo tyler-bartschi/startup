@@ -1,12 +1,16 @@
 import React from 'react';
 import "./home.css";
 import {useNavigate} from 'react-router-dom';
+import {CreateBooks} from './createBooks';
+import {Book} from "../add-book/bookTemplate";
 
-export function Home({average, updateScore}) {
+export function Home() {
     const navigate = useNavigate();
     const [quote, setQuote] = React.useState("Tell them hi for me. Please.");
     const [quoteAuthor, setQuoteAuthor] = React.useState('Zachary Huckins');
-
+    const [booksList, setBookList] = React.useState(CreateBooks([]));
+    // const [bookObjects, setBookObjects] = React.useState([]);
+    
     // sets the quote on load
     React.useEffect(() => {
         fetch("https://quote.cs260.click")
@@ -19,12 +23,41 @@ export function Home({average, updateScore}) {
     }, []);
 
     // sets an interval to repeatedly attempt to update the score
-    React.useEffect(() => {
-        updateScore(JSON.parse(localStorage.getItem('scores')) || []);
-        const interval = setInterval(() => {updateScore(JSON.parse(localStorage.getItem('scores')) || [])}, 2000);
+    // React.useEffect(() => {
+    //     updateScore(JSON.parse(localStorage.getItem('scores')) || []);
+    //     const interval = setInterval(() => {updateScore(JSON.parse(localStorage.getItem('scores')) || [])}, 2000);
         
-        return () => clearInterval(interval);
+    //     return () => clearInterval(interval);
+    // }, []);
+
+    React.useEffect(() => {
+        fetch("/api/books")
+            .then((response) => response.json())
+            .then((data) => {
+                // console.log(data);
+                // console.log(JSON.stringify(data));
+                if(!data || JSON.stringify(data) == "[]") {
+                    setBookList(CreateBooks([], navigate))
+                } else {
+                    setBookList(CreateBooks(data, navigate));
+                }
+                // updateBooks(data);
+            })
+            .catch();
     }, []);
+
+    // Note to self: this only probably works
+    // function updateBooks(data) {
+    //     const book_data = [];
+    //     if (!(data.length === 0)) {
+    //         for (let i = 0; i < data.length; i++) {
+    //             let cur_item = data[i];
+    //             let cur_book = new Book(cur_item.title, cur_item.author, cur_item.summary, cur_item.pages, cur_item.image, cur_item.reviews);
+    //             book_data.push(cur_book);
+    //         }
+    //     }
+    //     setBookObjects(book_data);
+    // }
 
     return (
         <main className="container-fluid">
@@ -38,39 +71,13 @@ export function Home({average, updateScore}) {
             </div>
 
             <h3 className="h3-home">Reviews</h3>
-            <div className="book">
-                <div className="book-wrapper">
-                    <img className="cover-image" src="/the-way-of-kings.jpg" alt="The Way of Kings cover" width="150px" />
-                    <div className="book-data-wrapper">
-                        <div className="book-data">
-                            <p id="book-title"><b>The Way of Kings</b></p>
-                            <p id="author">Author: Brandon Sanderson</p>
-                            <p className="average-review">Average: <span className="rating">{average}</span> / 5</p>
-                        </div>
-                        <div className="button-wrapper">
-                            <button className="review-button" type="submit" onClick={() => navigate('/reviews')} >+ Review</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {booksList}
 
-            <div className="book">
-                <div className="book-wrapper">
-                    <img className="cover-image" src="/crime-and-punishment.jpg" alt="Crime and Punishment cover" width="150px" />
-                    <div className="book-data-wrapper">
-                        <div className="book-data">
-                            <p id="book-title"><b>Crime and Punishment</b></p>
-                            <p id="author">Author: Fyodor Dostoevsky</p>
-                            <p className="average-review">Average: <span className="rating">1.5</span> / 5</p>
-                        </div>
-                    
-                        <div className="button-wrapper">
-                            <button className="review-button disabled" type="submit" disabled>✔ Reviewed</button>
-                        </div>
-                    </div>
-                </div>
+            <div className="add-book-wrapper">
+                <button className="add-book-button" type="submit" onClick={() => navigate('/add-book')} >Add A Book!</button>
             </div>
-
         </main>
     );
 }
+
+

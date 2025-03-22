@@ -3,20 +3,33 @@ import "./account.css";
 import {UserComments} from './userComments';
 import {useNavigate} from 'react-router-dom';
 import {ErrorDialog} from '/src/login/errorDialog';
+import {ConfirmationDialog} from "./confirmationDialog";
 
 export function Account(props) {
     const navigate = useNavigate();
     const [newUserName, setNewUserName] = React.useState("");
     const [newPassword, setNewPassword] = React.useState('');
     const [displayError, setDisplayError] = React.useState(null);
-    const [comments, setComments] = React.useState(<UserComments />);
+    const [comments, setComments] = React.useState(UserComments([]));
+    const [userConfirm, setUserConfirmation] = React.useState(null);
+    const [passConfirm, setPassConfirmation] = React.useState(null);
     
     async function changeUserName() {
-        change('/api/auth/changeUser', "username");
+        setUserConfirmation("Are you sure you want to change your username? This action cannot be undone.");
     }
 
     async function changePassword() {
+        setPassConfirmation("Are you sure you want to change your password? This action cannot be undone.");
+    }
+
+    async function changeUserNameConfirm() {
+        change('/api/auth/changeUser', "username");
+        setUserConfirmation(null);
+    }
+
+    async function changePasswordConfirm() {
         change('/api/auth/changePass', "password");
+        setPassConfirmation(null);
     }
 
     async function change(endpoint, type) {
@@ -56,10 +69,15 @@ export function Account(props) {
     }
 
     React.useEffect(() => {
-        fetch('/api/reviews/user')
+        fetch('/api/user/reviews')
             .then((response) => response.json())
             .then((data) => {
-                setComments(UserComments(data.reviews));
+                console.log(data.value);
+                if (data.value) {
+                    setComments(UserComments(data.value));
+                } else {
+                    setComments(UserComments([]));
+                }
             })
     }, []);
 
@@ -71,7 +89,7 @@ export function Account(props) {
                 <span className="account-username">{props.userName}</span>
             </div>
             <div className="past-comments">
-                <h4 className="h4-account" >Your Comments</h4>
+                <h4 className="h4-account" >Your Reviews</h4>
                 {comments}
             </div>
 
@@ -94,6 +112,8 @@ export function Account(props) {
                 <button className="logout" type="submit" onClick={() => navigate('/')}>Return to login</button>
             </div>
             <ErrorDialog message={displayError} onHide={() => setDisplayError(null)} />
+            <ConfirmationDialog message={userConfirm} onHide={() => setUserConfirmation(null)} onConfirm={() => changeUserNameConfirm()} />
+            <ConfirmationDialog message={passConfirm} onHide={() => setPassConfirmation(null)} onConfirm={() => changePasswordConfirm()} />
         </main>
     );
 }

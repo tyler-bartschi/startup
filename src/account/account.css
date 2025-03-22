@@ -96,3 +96,11 @@
 .change-button:disabled {
     background-color: rgb(142, 142, 153);
 }
+
+.cancel-button {
+    background-color: rgb(196, 28, 28) !important;
+}
+
+.cancel-button:hover {
+    background-color: rgb(141, 18, 18) !important;
+}
