@@ -21,44 +21,6 @@ export function Reviews({userName}) {
     const [reviewListDisplay, setReviewListDisplay] = React.useState([]);
     const [displayError, setDisplayError] = React.useState(null);
 
-    
-    // simulates the WebSocket data, every 8 seconds it adds a review
-    // React.useEffect(() => {
-    //         const review_interval = setInterval(() => {
-    //             let review_arr = leaveReview();
-    //             updateReviews(review_arr[0], review_arr[1], review_arr[2], false);
-    //         }, 8000);
-
-    //         return () => clearInterval(review_interval);
-    //     },[]);
-
-    // React.useEffect(() => {
-    //         fetch('/api/reviews')
-    //             .then((response) => response.json())
-    //             .then((data) => {
-    //                 updateScoreTable(ScoreTable(data));
-    //                 // updateScore(data.reviews);
-    //                 setOtherReviews(OtherReviews(data));
-    //             });
-    // }, [revs]);
-
-    // React.useEffect(() => {
-    //     const executeEffect = () => {
-    //         const review_interval = setInterval(() => {
-    //             let review_arr = leaveReview();
-    //             updateReviews(review_arr[0], review_arr[1], review_arr[2], false);
-    //         }, 8000);
-    //     }
-
-    //     const webSimulate = setTimeout(() => {
-    //         executeEffect()
-    //     }, 1000);
-
-    //     return () => {
-    //         clearTimeout(webSimulate);
-    //         clearInterval(review_interval);
-    //     }
-    // }, []);
 
     function simulateWebSocket() {
         const reviewInterval = setInterval(() => {
@@ -78,10 +40,8 @@ export function Reviews({userName}) {
         if (book.title !== "temp"){
             simulateWebSocket();
         }
-    }, [book])
-
-
-
+        // setInfo(LoadInfo(book));
+    }, [book]);
 
 
     // functions to check if the score entered is valid, and display a visual indication if it is not
