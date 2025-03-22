@@ -7,9 +7,6 @@ const DB = require('./database.js');
 
 const authCookieName = 'token';
 
-let reviews = [];
-let user_reviews = [];
-let state = 0;
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -58,7 +55,6 @@ apiRouter.post('/auth/login', async (req, res) => {
     } else {
         res.status(401).send({msg: 'User does not exist'});
     }
-    // res.status(401).send({msg: 'Unauthorized'});
 });
 
 apiRouter.delete('/auth/logout', async (req, res) => {
@@ -91,14 +87,8 @@ apiRouter.get('/books', verifyAuth, async (req, res) => {
 });
 
 apiRouter.get('/books/state', verifyAuth, async (req, res) => {
-    res.send({value: state});
-});
-
-
-// which book to load when going to reviews
-apiRouter.put('/books/update/state', verifyAuth, async(req, res) => {
-    state = req.body.value;
-    res.send({msg: 'updated state'});
+    const user = await findUser('token', req.cookies[authCookieName]);
+    res.send({value: user.state});
 });
 
 
@@ -109,6 +99,19 @@ apiRouter.put('/books/update', verifyAuth, async(req, res) => {
     } else {
         res.send({msg: "Book already added"});
     }
+});
+
+// which book to load when going to reviews
+apiRouter.put('/books/update/state', verifyAuth, async (req, res) => {
+    const user = await findUser('token', req.cookies[authCookieName]);
+    user.state = req.body.value;
+    await DB.updateUser(user);
+    res.send({msg: "updated"});
+});
+
+apiRouter.put('/books/update/reviews', verifyAuth, async (req, res) => {
+    await updateBookReview(req.body.title, req.body.review);
+    res.send({msg: "updated reviews"});
 });
 
 apiRouter.put('/auth/changeUser', verifyAuth, async (req, res) => {
@@ -129,32 +132,32 @@ apiRouter.put('/auth/changePass', verifyAuth, async (req, res) => {
     }
 });
 
-apiRouter.get('/reviews', verifyAuth, (_req, res) => {
-    if (reviews == []) {
-        res.send(JSON.stringify({reviews: "[]"}));
-    } else {
-        res.send(JSON.stringify({reviews: reviews}));
-    }
+// apiRouter.get('/reviews', verifyAuth, (_req, res) => {
+//     if (reviews == []) {
+//         res.send(JSON.stringify({reviews: "[]"}));
+//     } else {
+//         res.send(JSON.stringify({reviews: reviews}));
+//     }
     
-});
+// });
 
-apiRouter.get('/reviews/user', verifyAuth, (_req, res) => {
-    if (user_reviews == []) {
-        res.send(JSON.stringify({reviews: "[]"}));
-    } else {
-        res.send(JSON.stringify({reviews: user_reviews}));
-    }
-});
+// apiRouter.get('/reviews/user', verifyAuth, (_req, res) => {
+//     if (user_reviews == []) {
+//         res.send(JSON.stringify({reviews: "[]"}));
+//     } else {
+//         res.send(JSON.stringify({reviews: user_reviews}));
+//     }
+// });
 
-apiRouter.put('/reviews', verifyAuth, (req, res) => {
-    updateReviews(req.body.review);
-    res.send(reviews);
-});
+// apiRouter.put('/reviews', verifyAuth, (req, res) => {
+//     updateReviews(req.body.review);
+//     res.send(reviews);
+// });
 
-apiRouter.put('/reviews/user', verifyAuth, (req, res) => {
-    updateUserReviews(req.body.review);
-    res.send(user_reviews);
-});
+// apiRouter.put('/reviews/user', verifyAuth, (req, res) => {
+//     updateUserReviews(req.body.review);
+//     res.send(user_reviews);
+// });
 
 // default error handling
 app.use(function (err, req, res, next) {
@@ -174,6 +177,7 @@ async function createUser(username, password) {
         password: passwordHash,
         token: uuid.v4(),
         reviews: [],
+        state: 0,
     };
     await DB.addUser(user);
 
@@ -223,6 +227,12 @@ async function getBooks() {
     }
 }
 
+async function updateBookReview(title, value) {
+    const book = await DB.findBook(title);
+    book.reviews = [value, ...book.reviews];
+    await DB.updateBook(book);
+}
+
 function setAuthCookie(res, authToken) {
     res.cookie(authCookieName, authToken, {
         secure: true,
@@ -231,13 +241,13 @@ function setAuthCookie(res, authToken) {
     });
 }
 
-function updateReviews(score){
-    reviews = [score, ...reviews];
-}
+// function updateReviews(score){
+//     reviews = [score, ...reviews];
+// }
 
-function updateUserReviews(score) {
-    user_reviews = [score, ...user_reviews];
-}
+// function updateUserReviews(score) {
+//     user_reviews = [score, ...user_reviews];
+// }
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

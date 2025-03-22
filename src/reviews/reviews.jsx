@@ -78,13 +78,18 @@ export function Reviews({userName}) {
     // }
 
     React.useEffect(() => {
-        fetch("/api/books/state")
+        setInfo("loading...");
+        const wait = setTimeout(() => {
+            fetch("/api/books/state")
             .then((response) => response.json())
             .then((data) => {
                 let state = data.value;
                 // setState(LoadState(data.value));
                 setBook(getBook(state))
             });
+        }, 200);
+        
+        return () => clearTimeout(wait);
     }, []);
 
     function getBook(state) {
