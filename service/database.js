@@ -3,9 +3,9 @@ const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
-const db = client.db('startup-test');
-const userCollection = db.collection('temp-users');
-const bookCollection = db.collection('temp-books');
+const db = client.db('startup-production');
+const userCollection = db.collection('users');
+const bookCollection = db.collection('books');
 
 (async function testConnection() {
     try {

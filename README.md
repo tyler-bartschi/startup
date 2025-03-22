@@ -132,8 +132,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [x] **Stores data in MongoDB** - Stores the list of users (each user has a username, password, token, a list of reviews they have left, and a state variable that tracks which book is being reviewed). It also stores the list of books on the website, including the list of reviews left for that book.
+- [x] **Stores credentials in MongoDB** - Stores user login credentials in MongoDB.
 
 ## 🚀 WebSocket deliverable
 
