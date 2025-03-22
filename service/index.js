@@ -17,17 +17,6 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-
-/* 
-"api/auth/create" - POST - creates a user with an email and a password 
-"api/auth/login" - POST - logs in a user, displays error if the password is wrong
-"api/auth/logout" - DELETE - logs out a user
-"api/auth/changeUser" - PUT - changes username
-"api/auth/changePass" - PUT - changes password
-"api/reviews" - GET - gets the reviews
-"api/reviews" - POST - posts a review
-*/
-
 apiRouter.post('/auth/create', async (req, res) => {
     if (await findUser('username', req.body.username)) {
         res.status(409).send({msg: "Existing user"});
@@ -186,13 +175,16 @@ async function createUser(username, password) {
 
 async function updateUser(field, value, req) {
     const user = await findUser('token', req.cookies[authCookieName]);
+    console.log(user);
 
     if (field === "username") {
         user.username = value;
+        DB.updateUser(user);
         return true;
     } else if (field === "password") {
         const passwordHash = await bcrypt.hash(value, 10);
         user.password = passwordHash;
+        DB.updateUser(user);
         return true;
     }
     return null;
