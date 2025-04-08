@@ -20,6 +20,37 @@ export function Reviews({userName}) {
     const [displayError, setDisplayError] = React.useState(null);
     const [average, setAverage] = React.useState(0);
 
+    
+    class Connection {
+        constructor () {
+            let port = window.location.port;
+            const protocol = window.location.protocal === 'http:' ? 'ws' : 'wss';
+            this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
+            this.socket.onopen = (event) => {
+                console.log("WebSocket Connected");
+            }
+            this.socket.onclose = (event) => {
+                console.log("WebSocket Closed");
+            }
+            this.socket.onmessage = async (msg) => {
+                try {
+                    const event = JSON.parse(await msg.data.text());
+                    this.postEvent(event);
+                } catch {}
+            };
+        }
+
+        postEvent(event) {
+            updateReviews(event.score, event.comment, event.name, false);
+        }
+
+        sendEvent(event) {
+            this.socket.send(JSON.stringify(event));
+        }
+    }
+
+    const connect = Connection();
+
 
     function simulateWebSocket() {
         const reviewInterval = setInterval(() => {
@@ -84,11 +115,11 @@ export function Reviews({userName}) {
         }
         let cur_review = new Review(userName, userReview, reviewScore, book.title);
         await updateList(cur_review);
-        await fetch('/api/books/update/reviews', {
-            method: "PUT",
-            headers: {'content-type': 'application/json'},
-            body: JSON.stringify({title: book.title, review: cur_review}),
-        });
+        // await fetch('/api/books/update/reviews', {
+        //     method: "PUT",
+        //     headers: {'content-type': 'application/json'},
+        //     body: JSON.stringify({title: book.title, review: cur_review}),
+        // });
         if (fromUser) {
             setReviewScore("");
             setUserReview("");
@@ -97,6 +128,7 @@ export function Reviews({userName}) {
                 headers: {'content-type': 'application/json'},
                 body: JSON.stringify({review: cur_review}),
             });
+            connect.sendEvent(cur_review);
         }
 
     }
