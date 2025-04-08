@@ -366,4 +366,7 @@ console.log(b, c, others);
 
 - see uploading files code to see how to upload images. Do this for the custom books
 - Look into S3?
-- 
+
+## WebSocket
+
+
