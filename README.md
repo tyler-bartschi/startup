@@ -139,8 +139,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - webConnect.js contains the functionality of the backend websocket, including listening for messages and pinging.
+- [x] **Frontend makes WebSocket connection** - Frontend makes WebSocket connection in the reviews.jsx file, and will send data over WebSocket when a review is posted, and when a review is received it displays it in the list of reviews. It also incorporates only doing this if the title matches, that is if the review is for the book that the user is currently looking at.
+- [x] **Data sent over WebSocket connection** - Book review data, including username, title, the review, and the score, is sent over the WebSocket connection.
+- [x] **WebSocket data displayed** - The WebSocket data is displayed as part of the list of reviews on the site.
+- [x] **Application is fully functional** - Application is fully functional, supporting different books, reviews for those books, adding books, login and create, changing the username and password.
