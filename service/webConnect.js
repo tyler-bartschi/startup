@@ -22,10 +22,10 @@ function webConnect(httpServer) {
     setInterval(() => {
         socketServer.clients.forEach(function each(client) {
             if (client.isAlive === false) {
-                return client.terminate;
+                return client.terminate();
             }
             client.isAlive = false;
-            client.ping;
+            client.ping();
         });
     }, 10000);
 }

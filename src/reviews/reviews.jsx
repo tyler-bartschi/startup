@@ -24,7 +24,7 @@ export function Reviews({userName}) {
     class Connection {
         constructor () {
             let port = window.location.port;
-            const protocol = window.location.protocal === 'http:' ? 'ws' : 'wss';
+            const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
             this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
             this.socket.onopen = (event) => {
                 console.log("WebSocket Connected");
@@ -40,8 +40,11 @@ export function Reviews({userName}) {
             };
         }
 
+        // will put the review as part of the reviews, but only if the title matches
         postEvent(event) {
-            updateReviews(event.score, event.comment, event.name, false);
+            if (event.title === book.title){
+                updateReviews(event.score, event.comment, event.name, false, false);
+            }
         }
 
         sendEvent(event) {
@@ -49,23 +52,16 @@ export function Reviews({userName}) {
         }
     }
 
-    const connect = Connection();
+    // uses a useRef to prevent it from reloading during re-renders
+    const connectRef = React.useRef(null);
 
-
-    function simulateWebSocket() {
-        const reviewInterval = setInterval(() => {
-            let review_arr = leaveReview();
-            updateReviews(review_arr[0], review_arr[1], review_arr[2], false);
-        }, 8000);
-
-        return () => clearInterval(reviewInterval);
-
-    }
-
+    // needs the if statement so that it will set up the "book" properly, only when it has a valid book
     React.useEffect(() => {
-        if (book.title !== "temp"){
-            simulateWebSocket();
+        if (book.title !== "temp") {
+            connectRef.current = new Connection();
+            return () => connectRef.current.socket.close();
         }
+        
     }, [book]);
 
     // functions to check if the score entered is valid, and display a visual indication if it is not
@@ -106,8 +102,8 @@ export function Reviews({userName}) {
         setReviewListDisplay(prevValue => [cur_review, ...prevValue]);
     }
 
-
-    async function updateReviews(reviewScore, userReview, userName, fromUser=true) {
+    async function updateReviews(reviewScore, userReview, userName, fromUser=true, do_update=true) {
+        // don't allow the user to post a score of 0
         if (reviewScore === 0) {
             setDisplayError("Invalid Score: score cannot be 0");
             setReviewScore("");
@@ -115,11 +111,14 @@ export function Reviews({userName}) {
         }
         let cur_review = new Review(userName, userReview, reviewScore, book.title);
         await updateList(cur_review);
-        // await fetch('/api/books/update/reviews', {
-        //     method: "PUT",
-        //     headers: {'content-type': 'application/json'},
-        //     body: JSON.stringify({title: book.title, review: cur_review}),
-        // });
+        if (do_update) {
+            connectRef.current.sendEvent(cur_review);
+            await fetch('/api/books/update/reviews', {
+                method: "PUT",
+                headers: {'content-type': 'application/json'},
+                body: JSON.stringify({title: book.title, review: cur_review}),
+            });
+        }
         if (fromUser) {
             setReviewScore("");
             setUserReview("");
@@ -128,7 +127,6 @@ export function Reviews({userName}) {
                 headers: {'content-type': 'application/json'},
                 body: JSON.stringify({review: cur_review}),
             });
-            connect.sendEvent(cur_review);
         }
 
     }
